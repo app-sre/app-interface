@@ -1,0 +1,9 @@
+---
+$schema: /access/permission-1.yml
+
+labels: {}
+
+name: a-team-example-permission
+description: A generic permissions file
+
+service: generic

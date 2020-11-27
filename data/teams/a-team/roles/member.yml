@@ -1,0 +1,8 @@
+---
+$schema: /access/role-1.yml
+
+labels: {}
+name: a-team-member
+
+permissions:
+- $ref: /teams/a-team/permissions/example.yml
