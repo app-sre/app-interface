@@ -1,0 +1,13 @@
+- name: AppInterfaceSettings_v1
+  fields:
+  - { name: schema, type: string, isRequired: true }
+  - { name: path, type: string, isRequired: true }
+  - { name: labels, type: json }
+  - { name: name, type: string, isRequired: true }
+  - { name: description, type: string, isRequired: true }
+  - { name: vault, type: boolean, isRequired: true }
+  - { name: kubeBinary, type: string, isRequired: true }
+
+- name: Query
+  fields:
+  - { name: app_interface_settings_v1, type: AppInterfaceSettings_v1, isList: true, datafileSchema: /app-interface/app-interface-settings-1.yml }
