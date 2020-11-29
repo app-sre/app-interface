@@ -1,6 +1,6 @@
 # App-Interface
 
-This repository serves as a central coordination point for hoated services.
+This repository serves as a central coordination point for hosted services.
 Many or all of the portions of the contract
 defined herein will be handled through automation after changes are accepted to
 this repository by the appropriate parties.
