@@ -1,0 +1,11 @@
+---
+$schema: /openshift/cluster-1.yml
+
+labels: {}
+
+name: appint-ex-01
+description: Example app-interface cluster
+
+automationToken:
+  path: creds/kube-configs/appint-ex-01
+  field: token
