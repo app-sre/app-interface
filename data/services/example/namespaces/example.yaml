@@ -1,0 +1,10 @@
+---
+$schema: /openshift/namespace-1.yml
+
+labels: {}
+
+name: example
+description: An example namespace
+
+cluster:
+  $ref: /clusters/appint-ex-01/cluster.yml
