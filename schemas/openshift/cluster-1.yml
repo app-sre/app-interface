@@ -362,13 +362,7 @@ required:
 - "$schema"
 - labels
 - name
-- consoleUrl
-- kibanaUrl
-- prometheusUrl
-- serverUrl
-- elbFQDN
 - description
-- internal
 dependencies:
   jumpHost:
   - automationToken

@@ -92,5 +92,3 @@ required:
 - description
 - vault
 - kubeBinary
-- saasDeployJobTemplate
-- hashLength

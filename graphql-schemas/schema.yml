@@ -466,12 +466,12 @@
   - { name: auth, type: GithubClusterAuth_v1 }
   - { name: observabilityNamespace, type: Namespace_v1 }
   - { name: grafanaUrl, type: string }
-  - { name: consoleUrl, type: string, isRequired: true }
-  - { name: kibanaUrl, type: string, isRequired: true }
-  - { name: prometheusUrl, type: string, isRequired: true }
-  - { name: alertmanagerUrl, type: string, isRequired: true }
-  - { name: serverUrl, type: string, isRequired: true }
-  - { name: elbFQDN, type: string, isRequired: true }
+  - { name: consoleUrl, type: string }
+  - { name: kibanaUrl, type: string }
+  - { name: prometheusUrl, type: string }
+  - { name: alertmanagerUrl, type: string }
+  - { name: serverUrl, type: string }
+  - { name: elbFQDN, type: string }
   - { name: managedGroups, type: string, isList: true }
   - { name: managedClusterRoles, type: boolean }
   - { name: ocm, type: OpenShiftClusterManager_v1 }
@@ -955,8 +955,8 @@
   - { name: description, type: string, isRequired: true }
   - { name: grafanaUrl, type: string }
   - { name: cluster, type: Cluster_v1, isRequired: true }
-  - { name: app, type: App_v1, isRequired: true }
-  - { name: environment, type: Environment_v1, isRequired: true}
+  - { name: app, type: App_v1 }
+  - { name: environment, type: Environment_v1 }
   - { name: limitRanges, type: LimitRange_v1 }
   - { name: quota, type: ResourceQuota_v1 }
   - { name: networkPoliciesAllow, type: Namespace_v1, isList: true }
@@ -1116,17 +1116,17 @@
   - { name: labels, type: json }
   - { name: name, type: string, isRequired: true }
   - { name: description, type: string, isRequired: true }
-  - { name: onboardingStatus, type: string, isRequired: true }
+  - { name: onboardingStatus, type: string }
   - { name: grafanaUrl, type: string }
   - { name: parentApp, type: App_v1 }
   - { name: serviceDocs, type: string, isList: true }
-  - { name: serviceOwners, type: Owner_v1, isList: true, isRequired: true }
+  - { name: serviceOwners, type: Owner_v1, isList: true }
   - { name: serviceNotifications, type: Owner_v1, isList: true }
   - { name: dependencies, type: Dependency_v1, isList: true }
   - { name: gcrRepos, type: AppGcrRepos_v1, isList: true }
   - { name: quayRepos, type: AppQuayRepos_v1, isList: true }
   - { name: escalations, type: AppEscalations_v1 }
-  - { name: performanceParameters, type: AppPerformanceParameters_v1, isRequired: true }
+  - { name: performanceParameters, type: AppPerformanceParameters_v1 }
   - { name: endPoints, type: AppEndPoints_v1, isList: true }
   - { name: codeComponents, type: AppCodeComponents_v1, isList: true }
   - { name: sentryProjects, type: AppSentryProjects_v1, isList: true }

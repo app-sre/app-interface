@@ -158,5 +158,3 @@ required:
 - name
 - description
 - cluster
-- app
-- environment
