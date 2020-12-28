@@ -1,0 +1,15 @@
+---
+$schema: /aws/account-1.yml
+
+labels: {}
+
+name: app-int-example
+description: Example AWS account
+
+uid: '012345678910'
+resourcesDefaultRegion: us-east-1
+terraformUsername: terraform
+
+automationToken:
+  path: creds/terraform/app-int-example/config
+  field: all
