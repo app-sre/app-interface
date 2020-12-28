@@ -9,7 +9,7 @@
   - { name: kubeBinary, type: string, isRequired: true }
   - { name: pullRequestGateway, type: string }
   - { name: mergeRequestGateway, type: string }
-  - { name: saasDeployJobTemplate, type: string, isRequired: true }
+  - { name: saasDeployJobTemplate, type: string }
   - { name: hashLength, type: int, isRequired: true }
   - { name: dependencies, type: AppInterfaceDependencyMapping_v1, isList: true }
   - { name: credentials, type: CredentialsRequestMap_v1, isList: true }
