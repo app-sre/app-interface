@@ -10,7 +10,7 @@
   - { name: pullRequestGateway, type: string }
   - { name: mergeRequestGateway, type: string }
   - { name: saasDeployJobTemplate, type: string }
-  - { name: hashLength, type: int, isRequired: true }
+  - { name: hashLength, type: int }
   - { name: dependencies, type: AppInterfaceDependencyMapping_v1, isList: true }
   - { name: credentials, type: CredentialsRequestMap_v1, isList: true }
   - { name: sqlQuery, type: SqlQuerySettings_v1 }
