@@ -1,0 +1,14 @@
+query {
+  namespaces: namespaces_v1 {
+    name
+    description
+    cluster {
+      name
+      description
+      automationToken {
+        path
+        field
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+query {
+  clusters: clusters_v1 {
+    name
+    description
+    automationToken {
+      path
+      field
+    }
+  }
+}
