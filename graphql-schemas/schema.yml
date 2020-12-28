@@ -554,12 +554,12 @@
   - { name: resourcesDefaultRegion, type: string, isRequired: true }
   - { name: supportedDeploymentRegions, type: string, isList: true }
   - { name: terraformUsername, type: string }
-  - { name: accountOwners, type: Owner_v1, isList: true, isRequired: true }
+  - { name: accountOwners, type: Owner_v1, isList: true }
   - { name: automationToken, type: VaultSecret_v1, isRequired: true }
   - { name: garbageCollection, type: boolean }
   - { name: disable, type: DisableClusterAutomations_v1 }
   - { name: deleteKeys, type: string, isList: true }
-  - { name: premiumSupport, type: boolean, isRequired: true }
+  - { name: premiumSupport, type: boolean }
   - name: ecrs
     type: AWSECR_v1
     isList: true

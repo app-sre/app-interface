@@ -71,6 +71,4 @@ required:
 - consoleUrl
 - uid
 - resourcesDefaultRegion
-- accountOwners
 - automationToken
-- premiumSupport
