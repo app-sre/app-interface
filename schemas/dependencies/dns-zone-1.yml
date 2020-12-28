@@ -1,0 +1,104 @@
+---
+"$schema": /metaschema-1.json
+version: '1.0'
+type: object
+
+additionalProperties: false
+properties:
+  "$schema":
+    type: string
+    enum:
+    - /dependencies/dns-zone-1.yml
+  labels:
+    "$ref": "/common-1.json#/definitions/labels"
+  name:
+    type: string
+  description:
+    type: string
+  account:
+    "$ref": "/common-1.json#/definitions/crossref"
+    "$schemaRef": "/aws/account-1.yml"
+  unmanaged_record_names:
+    type: array
+    items:
+      type: string
+  records:
+    type: array
+    items:
+      type: object
+      properties:
+        'type':
+          type: string
+        ttl:
+          type: integer
+        target_cluster:
+          "$ref": "/common-1.json#/definitions/crossref"
+          "$schemaRef": "/openshift/cluster-1.yml"
+      oneOf:
+      - properties:
+          'type':
+            type: string
+            enum:
+            - A
+            - CNAME
+            - NS
+          name:
+            type: string
+          target_cluster:
+            "$ref": "/common-1.json#/definitions/crossref"
+            "$schemaRef": "/openshift/cluster-1.yml"
+        oneOf:
+        - properties:
+            target:
+              type: string
+          required:
+          - target
+        - properties:
+            target_cluster:
+              "$ref": "/common-1.json#/definitions/crossref"
+              "$schemaRef": "/openshift/cluster-1.yml"
+          required:
+          - target_cluster
+        - properties:
+            targets:
+              type: array
+              items:
+                type: string
+          required:
+          - targets
+        required:
+        - name
+      - properties:
+          'type':
+            type: string
+            enum:
+            - MX
+          name:
+            type: string
+          priority:
+            type: integer
+          target:
+            type: string
+        required:
+        - name
+        - priority
+        - target
+      - properties:
+          'type':
+            type: string
+            enum:
+            - TXT
+          name:
+            type: string
+          target:
+            type: string
+        required:
+        - target
+      required:
+      - type
+required:
+- "$schema"
+- labels
+- name
+- description
+- records

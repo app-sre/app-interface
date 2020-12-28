@@ -1,0 +1,430 @@
+---
+"$schema": /metaschema-1.json
+version: '1.0'
+type: object
+
+additionalProperties: false
+properties:
+  "$schema":
+    type: string
+    enum:
+    - /dependencies/jenkins-config-1.yml
+  labels:
+    "$ref": "/common-1.json#/definitions/labels"
+  name:
+    type: string
+  description:
+    type: string
+  app:
+    "$ref": "/common-1.json#/definitions/crossref"
+    "$schemaRef": "/app-sre/app-1.yml"
+  instance:
+    "$ref": "/common-1.json#/definitions/crossref"
+    "$schemaRef": "/dependencies/jenkins-instance-1.yml"
+  type:
+    type: string
+    enum:
+    - defaults
+    - global-defaults
+    - views
+    - secrets
+    - base-templates
+    - global-base-templates
+    - job-templates
+    - jobs
+  config_path:
+    type: string
+  config:
+    type: array
+    items:
+      type: object
+      oneOf:
+      - additionalProperties: false
+        properties:
+          view:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              view-type:
+                type: string
+              job-filters:
+                type: object
+                properties:
+                  regex-job:
+                    type: object
+                    properties:
+                      regex-name:
+                        type: string
+                      regex:
+                        type: string
+                    required:
+                    - regex-name
+                    - regex
+                required:
+                - regex-job
+            required:
+            - name
+            - description
+            - view-type
+            - job-filters
+        required:
+        - view
+      - additionalProperties: false
+        properties:
+          project:
+            type: object
+            properties:
+              name:
+                type: string
+              label:
+                type: string
+              node:
+                type: string
+              gl_group:
+                type: string
+              gl_project:
+                type: string
+              gh_org:
+                type: string
+              gh_repo:
+                type: string
+              quay_org:
+                type: string
+              build_deploy_script_path:
+                type: string
+              pr_check_script_path:
+                type: string
+              jobs:
+                type: array
+                items:
+                  type: object
+                  oneOf:
+                  # github
+                  - additionalProperties: false
+                    properties:
+                      'gh-build-master':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gh-pr-check':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gh-build-master-with-upstream':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gh-build-tag':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gh-build-catalog-master':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gh-build-catalog-master-with-upstream':
+                        type: object
+                  # gitlab
+                  - additionalProperties: false
+                    properties:
+                      'gl-build-master':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'insights-gl-build-master':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'insights-engine-gl-build-master':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'insights-gh-build-master':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'insights-deploy-notifier':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-pr-check':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'insights-gl-pr-check':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'insights-engine-gl-pr-check':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'insights-gh-pr-check':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'insights-operator-gh-pr-check':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'insights-saas-templates-sync':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-timed':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-pipeline-scm-trigger':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-pipeline-timed':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-build-master-with-upstream':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-build-catalog-master':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-build-catalog-master-with-master':
+                        type: object
+                  # app-interface
+                  - additionalProperties: false
+                    properties:
+                      'gl-build-master-app-interface':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-pr-check-app-interface':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-periodic-job-app-interface':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'qontract-reconcile-with-upstream':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'qontract-reconcile-timed':
+                        type: object
+                  # app-sre
+                  - additionalProperties: false
+                    properties:
+                      'gh-build-master-vault-manager':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gh-pr-check-vault-manager':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-job-sos-report':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-build-master-osio-scan':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'pagerditty':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-job-workday-reminder':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'jenkins-slaves-cleanup':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-build-master-ansible-playbook':
+                        type: object
+                  # clusterimageset
+                  - additionalProperties: false
+                    properties:
+                      'clusterimageset-run':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-pr-check-clusterimagesets':
+                        type: object
+                  # insights
+                  - additionalProperties: false
+                    properties:
+                      'insights-ephemeral-namespace-reconciler':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gh-build-master-approval-api':
+                        type: object
+                  # release controller
+                  - additionalProperties: false
+                    properties:
+                      'gh-build-master-release-controller':
+                        type: object
+                  # uhc
+                  - additionalProperties: false
+                    properties:
+                      'uhc-integration-tests':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'ocm-portal-deploy':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'ocm-pr-check-selenium':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'ocm-pr-check':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'ocm-build-master':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'ocm-build-image':
+                        type: object
+                  # osde2e
+                  - additionalProperties: false
+                    properties:
+                      'osde2e-metrics-sync':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'osde2e-weather-report':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'osde2e-weather-report-to-slack':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'osde2e-granular-alerting':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'osde2e-trigger-jobs':
+                        type: object
+                  # sd-scale
+                  - additionalProperties: false
+                    properties:
+                      'sd-scale-test':
+                        type: object
+                  # srep-operators
+                  - additionalProperties: false
+                    properties:
+                      'operator-curator':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gh-pr-check-aws-account-operator':
+                        type: object
+                  # git-keeper
+                  - additionalProperties: false
+                    properties:
+                      'gitkeeper-run':
+                        type: object
+                  # managed-tenants
+                  - additionalProperties: false
+                    properties:
+                      'gl-build-master-managed-tenants':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-pr-check-managed-tenants':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'ocm-api-tests-timed':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'ocm-build-master-timed-stage':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'ocm-build-master-timed-production':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'managed-services-api-cluster-extension':
+                        type: object
+                  # RHEL images
+                  - additionalProperties: false
+                    properties:
+                      'base-rhel':
+                        type: object
+                  # Managed Services
+                  - additionalProperties: false
+                    properties:
+                      'gl-pr-check-managed-services':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-build-master-managed-services':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'strimzi-operator-test':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'managed-kafka-performance':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'managed-kafka-security-scan':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'managed-services-pull-upstream':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'managed-kafka-chaos':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-build-master-strimzi':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'managed-services-api-tests':
+                        type: object
+                  - additionalProperties: false
+                    properties:
+                      'gl-pr-check-apache-kafka':
+                        type: object
+
+            required:
+            - name
+            - label
+            - node
+        required:
+        - project
+required:
+- "$schema"
+- labels
+- name
+- description
+- instance
+- type
+oneOf:
+- required:
+  - config
+- required:
+  - config_path
