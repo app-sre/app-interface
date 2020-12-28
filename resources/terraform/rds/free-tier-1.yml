@@ -3,7 +3,6 @@ name: postgres
 username: postgres
 instance_class: db.t2.micro
 allocated_storage: 20
-storage_encrypted: true
 auto_minor_version_upgrade: false
 skip_final_snapshot: true
 backup_retention_period: 7
