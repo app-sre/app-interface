@@ -129,18 +129,33 @@ properties:
         type: string
       provision_shard_id:
         type: string
+      autoscale:
+        type: object
+        additionalProperties: false
+        properties:
+          min_replicas:
+            type: integer
+          max_replicas:
+            type: integer
+        required:
+        - min_replicas
+        - max_replicas
     required:
     - provider
     - region
     - version
     - initial_version
     - multi_az
-    - nodes
     - instance_type
     - private
     - storage
     - load_balancers
     - upgrade
+    oneOf:
+    - required:
+      - nodes
+    - required:
+      - autoscale
   externalConfiguration:
     type: object
     additionalProperties: false
@@ -181,13 +196,33 @@ properties:
       properties:
         id:
           type: string
-          maxLength: 30
+          maxLength: 15
         instance_type:
           type: string
         replicas:
           type: integer
         labels:
           "$ref": "/common-1.json#/definitions/labels"
+        taints:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+              effect:
+                type: string
+                enum:
+                - NoSchedule
+                - NoExecute
+                - PreferNoSchedule
+            required:
+            - key
+            - value
+            - effect
       required:
       - id
       - instance_type
@@ -205,6 +240,7 @@ properties:
               type: string
               enum:
               - account-vpc
+              - account-vpc-mesh
               - cluster-vpc-requester
               - cluster-vpc-accepter
             name:
@@ -215,6 +251,11 @@ properties:
             cluster:
               "$ref": "/common-1.json#/definitions/crossref"
               "$schemaRef": "/openshift/cluster-1.yml"
+            account:
+              "$ref": "/common-1.json#/definitions/crossref"
+              "$schemaRef": "/aws/account-1.yml"
+            tags:
+              type: object
             manageRoutes:
               type: boolean
             delete:
@@ -238,6 +279,26 @@ properties:
             - provider
             - name
             - vpc
+          - properties:
+              provider:
+                type: string
+                enum:
+                - account-vpc-mesh
+              name:
+                type: string
+              account:
+                "$ref": "/common-1.json#/definitions/crossref"
+                "$schemaRef": "/aws/account-1.yml"
+              tags:
+                type: object
+              manageRoutes:
+                type: boolean
+              delete:
+                type: boolean
+            required:
+            - provider
+            - name
+            - account
           - properties:
               provider:
                 type: string
@@ -322,6 +383,7 @@ properties:
           - openshift-users
           - openshift-vault-secrets
           - openshift-routes
+          - openshift-network-policies
       e2eTests:
         type: array
         items:
@@ -366,9 +428,6 @@ required:
 dependencies:
   jumpHost:
   - automationToken
-  ocm:
-  - spec
-  - network
   externalConfiguration:
   - ocm
   machinePools:

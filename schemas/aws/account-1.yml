@@ -26,6 +26,8 @@ properties:
     type: array
     items:
       type: string
+  providerVersion:
+    type: string
   terraformUsername:
     type: string
     enum:
@@ -46,6 +48,8 @@ properties:
   automationToken:
     "$ref": "/common-1.json#/definitions/vaultSecret"
   garbageCollection:
+    type: boolean
+  enableDeletion:
     type: boolean
   disable:
     type: object
@@ -71,4 +75,5 @@ required:
 - consoleUrl
 - uid
 - resourcesDefaultRegion
+- providerVersion
 - automationToken
