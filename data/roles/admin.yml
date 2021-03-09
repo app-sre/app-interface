@@ -1,0 +1,12 @@
+---
+$schema: /access/role-1.yml
+
+labels: {}
+name: app-sre
+
+permissions: []
+
+access:
+- cluster:
+    $ref: /clusters/appint-ex-01/cluster.yml
+  group: dedicated-admins
