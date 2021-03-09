@@ -143,19 +143,6 @@ properties:
     required:
     - provider
     - region
-    - version
-    - initial_version
-    - multi_az
-    - instance_type
-    - private
-    - storage
-    - load_balancers
-    - upgrade
-    oneOf:
-    - required:
-      - nodes
-    - required:
-      - autoscale
   externalConfiguration:
     type: object
     additionalProperties: false
@@ -428,6 +415,9 @@ required:
 dependencies:
   jumpHost:
   - automationToken
+  ocm:
+  - spec
+  - network
   externalConfiguration:
   - ocm
   machinePools:

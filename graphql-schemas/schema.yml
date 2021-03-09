@@ -380,16 +380,16 @@
   - { name: external_id, type: string }
   - { name: provider, type: string, isRequired: true }
   - { name: region, type: string, isRequired: true }
-  - { name: channel, type: string, isRequired: true }
-  - { name: version, type: string, isRequired: true }
-  - { name: initial_version, type: string, isRequired: true }
-  - { name: multi_az, type: boolean, isRequired: true }
+  - { name: channel, type: string }
+  - { name: version, type: string }
+  - { name: initial_version, type: string }
+  - { name: multi_az, type: boolean }
   - { name: nodes, type: int }
-  - { name: instance_type, type: string, isRequired: true }
-  - { name: storage, type: int, isRequired: true }
-  - { name: load_balancers, type: int, isRequired: true }
-  - { name: private, type: boolean, isRequired: true }
-  - { name: upgrade, type: string, isRequired: true }
+  - { name: instance_type, type: string }
+  - { name: storage, type: int }
+  - { name: load_balancers, type: int }
+  - { name: private, type: boolean, }
+  - { name: upgrade, type: string }
   - { name: provision_shard_id, type: string }
   - { name: autoscale, type: ClusterSpecAutoScale_v1 }
 

@@ -6,6 +6,15 @@ labels: {}
 name: appint-ex-01
 description: Example app-interface cluster
 
+spec:
+  provider: aws
+  region: us-east-1
+
+network:
+  vpc: 10.0.0.0/16
+  service: 172.30.0.0/16
+  pod: 10.128.0.0/14
+
 ocm:
   $ref: /ocm/api.openshift.com.yml
 
