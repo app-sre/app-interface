@@ -19,9 +19,6 @@ automationToken:
 awsInfrastructureAccess:
 - awsGroup:
     $ref: /aws/app-int-example/groups/admin.yml
-  accessLevel: read-only
-- awsGroup:
-    $ref: /aws/app-int-example/groups/admin.yml
   accessLevel: network-mgmt
 
 peering:
