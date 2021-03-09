@@ -1,0 +1,11 @@
+---
+$schema: /access/user-1.yml
+
+labels: {}
+
+name: Test user
+org_username: tuser
+github_username: tuser
+
+roles:
+- $ref: /roles/admin.yml

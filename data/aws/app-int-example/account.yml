@@ -14,3 +14,5 @@ terraformUsername: terraform
 automationToken:
   path: creds/terraform/app-int-example/config
   field: all
+
+providerVersion: 3.22.0
