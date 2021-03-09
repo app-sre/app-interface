@@ -6,6 +6,29 @@ labels: {}
 name: appint-ex-01
 description: Example app-interface cluster
 
+ocm:
+  $ref: /ocm/api.openshift.com.yml
+
+managedGroups:
+- dedicated-admins
+
 automationToken:
   path: creds/kube-configs/appint-ex-01
   field: token
+
+awsInfrastructureAccess:
+- awsGroup:
+    $ref: /aws/app-int-example/groups/admin.yml
+  accessLevel: read-only
+- awsGroup:
+    $ref: /aws/app-int-example/groups/admin.yml
+  accessLevel: network-mgmt
+
+peering:
+  connections:
+  - provider: account-vpc-mesh
+    name: app-int-example-mesh
+    account:
+      $ref: /aws/app-int-example/account.yml
+    tags:
+      Name: test
