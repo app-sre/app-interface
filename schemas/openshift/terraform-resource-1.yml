@@ -1,0 +1,386 @@
+---
+"$schema": /metaschema-1.json
+version: '1.0'
+type: object
+
+additionalProperties: false
+properties:
+  "$schema":
+    type: string
+    enum:
+    - /openshift/terraform-resource-1.yml
+  provider:
+    type: string
+  account:
+    "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+  identifier:
+    "$ref": "/common-1.json#/definitions/longIdentifier"
+  variables:
+    type: object
+  policies:
+    type: array
+    items:
+      type: string
+  user_policy:
+    type: object
+  output_resource_name:
+    "$ref": "/common-1.json#/definitions/longIdentifier"
+  defaults:
+    type: string
+  parameter_group:
+    type: string
+  region:
+    "$ref": "/aws/regions-1.yml#/properties/region"
+  overrides:
+    type: object
+  es_identifier:
+    type: string
+  availability_zone:
+    type: string
+  enhanced_monitoring:
+    type: boolean
+  replica_source:
+    type: string
+  output_resource_db_name:
+    type: string
+  reset_password:
+    type: string
+  storage_class:
+    type: string
+  specs:
+    type: array
+    items:
+      type: object
+  s3_events:
+    type: array
+    items:
+      type: string
+  sqs_identifier:
+    type: string
+  bucket_policy:
+    type: object
+oneOf:
+- "$ref": "/aws/s3-1.yml"
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - aws-iam-service-account
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    identifier:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    variables:
+      type: object
+    policies:
+      type: array
+      items:
+        type: string
+    user_policy:
+      type: object
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+  required:
+  - account
+  - identifier
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - rds
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    identifier:
+      type: string
+    availability_zone:
+      type: string
+    defaults:
+      type: string
+    parameter_group:
+      type: string
+    overrides:
+      type: object
+      properties:
+        name:
+          type: string
+        engine:
+          type: string
+          enum:
+          - postgres
+          - mysql
+        engine_version:
+          type: string
+        username:
+          type: string
+        instance_class:
+          type: string
+        allocated_storage:
+          type: integer
+        backup_retention_period:
+          type: integer
+        storage_encrypted:
+          type: boolean
+        monitoring_interval:
+          type: integer
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    output_resource_db_name:
+      type: string
+    reset_password:
+      type: string
+    enhanced_monitoring:
+      type: boolean
+    replica_source:
+      type: string
+  required:
+  - account
+  - identifier
+  - defaults
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - elasticache
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    identifier:
+      type: string
+    defaults:
+      type: string
+    parameter_group:
+      type: string
+    region:
+      "$ref": "/aws/regions-1.yml#/properties/region"
+    overrides:
+      type: object
+      properties:
+        engine:
+          type: string
+          enum:
+          - redis
+        engine_version:
+          type: string
+        node_type:
+          type: string
+        port:
+          type: integer
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+  required:
+  - account
+  - identifier
+  - defaults
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - sqs
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    region:
+      "$ref": "/aws/regions-1.yml#/properties/region"
+    identifier:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    specs:
+      type: array
+      items:
+        type: object
+        properties:
+          defaults:
+            type: string
+          queues:
+            type: array
+            items:
+              type: object
+              properties:
+                key:
+                  "$ref": "/common-1.json#/definitions/secretKey"
+                value:
+                  type: string
+        required:
+        - defaults
+        - queues
+  required:
+  - account
+  - identifier
+  - specs
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - dynamodb
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    region:
+      "$ref": "/aws/regions-1.yml#/properties/region"
+    identifier:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    specs:
+      type: array
+      items:
+        type: object
+        properties:
+          defaults:
+            type: string
+          tables:
+            type: array
+            items:
+              type: object
+              properties:
+                key:
+                  "$ref": "/common-1.json#/definitions/secretKey"
+                value:
+                  type: string
+        required:
+        - defaults
+        - tables
+  required:
+  - account
+  - identifier
+  - specs
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - ecr
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    region:
+      "$ref": "/aws/regions-1.yml#/properties/region"
+    identifier:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+  required:
+  - account
+  - identifier
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - cloudwatch
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    region:
+      "$ref": "/aws/regions-1.yml#/properties/region"
+    identifier:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    es_identifier:
+      type: string
+    filter_pattern:
+      type: string
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    defaults:
+      type: string
+  required:
+  - account
+  - identifier
+  - defaults
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - kms
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    identifier:
+      type: string
+    region:
+      "$ref": "/aws/regions-1.yml#/properties/region"
+    defaults:
+      type: string
+    overrides:
+      type: object
+      properties:
+        name:
+          type: string
+        key_usage:
+          type: string
+          enum:
+          - encrypt_decrypt
+          - sign_verify
+        deletion_window_in_days:
+          type: integer
+        enable_key_rotation:
+          type: boolean
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+  required:
+  - account
+  - identifier
+  - defaults
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - elasticsearch
+    region:
+      "$ref": "/aws/regions-1.yml#/properties/region"
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    identifier:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    defaults:
+      type: string
+  required:
+  - account
+  - identifier
+  - defaults
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - acm
+    region:
+      "$ref": "/aws/regions-1.yml#/properties/region"
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    identifier:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    secret:
+      "$ref": "/common-1.json#/definitions/vaultSecret"
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+  required:
+  - account
+  - identifier
+  - secret
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - kinesis
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    identifier:
+      type: string
+    region:
+      "$ref": "/aws/regions-1.yml#/properties/region"
+    defaults:
+      type: string
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+  required:
+  - account
+  - identifier
+  - defaults
+required:
+- provider

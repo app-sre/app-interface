@@ -1,0 +1,59 @@
+---
+"$schema": /metaschema-1.json
+version: '1.0'
+type: object
+
+additionalProperties: false
+properties:
+  "$schema":
+    type: string
+    enum:
+    - /dependencies/dependency-1.yml
+  labels:
+    "$ref": "/common-1.json#/definitions/labels"
+  name:
+    type: string
+  description:
+    type: string
+  statefulness:
+    type: string
+  opsModel:
+    type: string
+  statusPage:
+    type: string
+    format: uri
+  SLA:
+    "$ref": "/common-1.json#/definitions/serviceLevel"
+  dependencyFailureImpact:
+    type: string
+  monitoring:
+    type: object
+    properties:
+      url:
+        type: string
+        format: url
+      namespace:
+        "$ref": "/common-1.json#/definitions/crossref"
+        "$schemaRef": "/openshift/namespace-1.yml"
+      provider:
+        type: string
+        enum:
+        - resource
+        - resource-template
+      path:
+        type: string
+    oneOf:
+    - required:
+      - url
+    - required:
+      - namespace
+required:
+- $schema
+- labels
+- name
+- description
+- statefulness
+- opsModel
+- SLA
+- dependencyFailureImpact
+- monitoring
