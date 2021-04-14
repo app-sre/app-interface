@@ -24,7 +24,22 @@ properties:
   grafanaUrl:
     type: string
     format: uri
-    
+
+  sopsUrl:
+    type: string
+    format: uri
+    description: |
+      Link to the git repo path that contains the top-level for the service
+      SOPs.
+    pattern: "^https?://(github.com|gitlab.cee.redhat.com)/"
+
+  architectureDocument:
+    type: string
+    format: uri
+    description: |
+      Link to the architectureDocument. This can be a git link or a link to a
+      Google Doc.
+
   parentApp:
     "$ref": "/common-1.json#/definitions/crossref"
     "$schemaRef": "/app-sre/app-1.yml"
@@ -60,20 +75,6 @@ properties:
       required:
       - name
       - email
-
-  performanceParameters:
-    type: object
-    additionalProperties: false
-    properties:
-      SLO:
-        "$ref": "/common-1.json#/definitions/serviceLevel"
-      SLA:
-        "$ref": "/common-1.json#/definitions/serviceLevel"
-      statusPage:
-        type: string
-        format: uri-reference
-    required:
-    - SLO
 
   serviceDocs:
     description: List of service docs
@@ -146,6 +147,37 @@ properties:
             required:
             - permissions
             - role
+        notifications:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              event:
+                type: string
+                enum:
+                - vulnerability_found
+              severity:
+                type: string
+                enum:
+                - Defcon 1
+                - Critical
+                - High
+                - Medium
+                - Low
+                - Negligible
+                - Unknown
+              method:
+                type: string
+                enum:
+                - email
+              escalationPolicy:
+                "$ref": "/common-1.json#/definitions/crossref"
+                "$schemaRef": "/app-sre/escalation-policy-1.yml"
+            required:
+            - event
+            - method
+            - escalationPolicy
         items:
           type: array
           items:
@@ -168,16 +200,6 @@ properties:
       - org
       - items
 
-  escalations:
-    type: object
-    additionalProperties: false
-    properties:
-      warning:
-        "$ref": "/common-1.json#/definitions/serviceEscalation"
-      critical:
-        "$ref": "/common-1.json#/definitions/serviceEscalation"
-      deadmanssnitch:
-        "$ref": "/common-1.json#/definitions/serviceEscalation"
   endPoints:
     type: array
     items:
@@ -194,6 +216,10 @@ properties:
       - name
       - description
       - url
+
+  escalationPolicy:
+    "$ref": "/common-1.json#/definitions/crossref"
+    "$schemaRef": "/app-sre/escalation-policy-1.yml"
 
   codeComponents:
     type: array

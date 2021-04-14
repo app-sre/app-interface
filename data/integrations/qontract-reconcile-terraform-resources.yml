@@ -23,3 +23,8 @@ schemas:
 - /app-sre/environment-1.yml
 - /app-sre/app-1.yml
 - /openshift/shared-resources-1.yml
+- /openshift/openshift-cluster-manager-1.yml
+- /aws/group-1.yml
+- /access/user-1.yml
+- /aws/vpc-1.yml
+- /openshift/cluster-addon-1.yml

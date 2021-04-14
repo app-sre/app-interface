@@ -19,3 +19,5 @@ schemas:
 - /aws/account-1.yml
 - /access/user-1.yml
 - /aws/vpc-1.yml
+- /aws/ecr-1.yml
+- /openshift/namespace-1.yml

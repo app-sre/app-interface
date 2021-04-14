@@ -28,6 +28,9 @@ properties:
   instance:
     "$ref": "/common-1.json#/definitions/crossref"
     "$schemaRef": "/dependencies/jenkins-instance-1.yml"
+  quayOrg:
+    "$ref": "/common-1.json#/definitions/crossref"
+    "$schemaRef": "/dependencies/quay-org-1.yml"
   role:
     type: string
   group:
@@ -35,11 +38,11 @@ properties:
   access:
     type: string
     enum:
-    - owner
-    - maintainer
-    - developer
-    - reporter
-    - guest
+    - "owner"
+    - "maintainer"
+    - "developer"
+    - "reporter"
+    - "guest"
   token:
     "$ref": "/common-1.json#/definitions/vaultSecret"
   workspace:
@@ -98,11 +101,11 @@ oneOf:
     access:
       type: string
       enum:
-      - owner
-      - maintainer
-      - developer
-      - reporter
-      - guest
+      - "owner"
+      - "maintainer"
+      - "developer"
+      - "reporter"
+      - "guest"
   required:
   - group
   - access
@@ -110,12 +113,13 @@ oneOf:
     service:
       enum:
       - quay-membership
-    org:
-      type: string
+    quayOrg:
+      "$ref": "/common-1.json#/definitions/crossref"
+      "$schemaRef": "/dependencies/quay-org-1.yml"
     team:
       type: string
   required:
-  - org
+  - quayOrg
   - team
 - properties:
     service:
