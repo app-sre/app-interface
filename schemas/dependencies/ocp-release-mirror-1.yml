@@ -8,7 +8,7 @@ properties:
   "$schema":
     type: string
     enum:
-      - /dependencies/ocp-release-ecr-mirror-1.yml
+      - /dependencies/ocp-release-mirror-1.yml
   hiveCluster:
     "$ref": "/common-1.json#/definitions/crossref"
     "$schemaRef": "/openshift/cluster-1.yml"
@@ -19,9 +19,15 @@ properties:
     "$ref": "/common-1.json#/definitions/longIdentifier"
   ocpArtDevEcrIdentifier:
     "$ref": "/common-1.json#/definitions/longIdentifier"
+  quayTargetOrgs:
+    type: array
+    items:
+      "$ref": "/common-1.json#/definitions/crossref"
+      "$schemaRef": "/dependencies/quay-org-1.yml"
 required:
   - "$schema"
   - hiveCluster
   - ecrResourcesNamespace
   - ocpReleaseEcrIdentifier
   - ocpArtDevEcrIdentifier
+  - quayTargetOrgs

@@ -8,26 +8,19 @@ properties:
   "$schema":
     type: string
     enum:
-    - /openshift/cluster-addon-1.yml
+    - /dependencies/quay-instance-1.yml
   labels:
     "$ref": "/common-1.json#/definitions/labels"
   name:
     type: string
   description:
     type: string
-  parameters:
-    type: array
-    items:
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-        value:
-          type: string
-      required:
-      - id
-      - value
+  url:
+    type: string
+    format: uri
 required:
 - "$schema"
 - labels
 - name
+- description
+- url

@@ -15,6 +15,10 @@ properties:
     type: string
   validate_json:
     type: boolean
+  validate_alertmanager_config:
+    type: boolean
+  alertmanager_config_key:
+    type: string
   type:
     type: string
   variables:
@@ -43,6 +47,10 @@ oneOf:
       type: string
     validate_json:
       type: boolean
+    validate_alertmanager_config:
+      type: boolean
+    alertmanager_config_key:
+      type: string
   required:
   - path
 - additionalProperties: false
@@ -60,6 +68,10 @@ oneOf:
       - extracurlyjinja2
     variables:
       type: object
+    validate_alertmanager_config:
+      type: boolean
+    alertmanager_config_key:
+      type: string
   required:
   - path
 - additionalProperties: false

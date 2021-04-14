@@ -82,6 +82,8 @@ properties:
     "$ref": "/common-1.json#/definitions/longIdentifier"
   allow_object_tagging:
     type: boolean
+  kms_encryption:
+    type: boolean
 required:
 - account
 - identifier

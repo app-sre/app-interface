@@ -59,6 +59,23 @@ properties:
     type: string
   bucket_policy:
     type: object
+  kms_encryption:
+    type: boolean
+  mirror:
+    "$schemaRef": "/dependencies/container-image-mirror-1.yml"
+  public:
+    type: boolean
+  domain:
+    type: object
+  aws_infrastructure_access:
+    type: object
+    additionalProperties: false
+    properties:
+      cluster:
+        "$ref": "/common-1.json#/definitions/crossref"
+        "$schemaRef": "/openshift/cluster-1.yml"
+      access_level:
+        type: string
 oneOf:
 - "$ref": "/aws/s3-1.yml"
 - additionalProperties: false
@@ -81,6 +98,18 @@ oneOf:
       type: object
     output_resource_name:
       "$ref": "/common-1.json#/definitions/longIdentifier"
+    aws_infrastructure_access:
+      type: object
+      additionalProperties: false
+      properties:
+        cluster:
+          "$ref": "/common-1.json#/definitions/crossref"
+          "$schemaRef": "/openshift/cluster-1.yml"
+        access_level:
+          type: string
+      required:
+      - cluster
+      - access_level
   required:
   - account
   - identifier
@@ -124,6 +153,8 @@ oneOf:
           type: boolean
         monitoring_interval:
           type: integer
+        allow_major_version_upgrade:
+          type: boolean
     output_resource_name:
       "$ref": "/common-1.json#/definitions/longIdentifier"
     output_resource_db_name:
@@ -261,6 +292,10 @@ oneOf:
       "$ref": "/common-1.json#/definitions/longIdentifier"
     output_resource_name:
       "$ref": "/common-1.json#/definitions/longIdentifier"
+    mirror:
+      "$schemaRef": "/dependencies/container-image-mirror-1.yml"
+    public:
+      type: boolean
   required:
   - account
   - identifier
@@ -356,12 +391,27 @@ oneOf:
       "$ref": "/common-1.json#/definitions/longIdentifier"
     secret:
       "$ref": "/common-1.json#/definitions/vaultSecret"
+    domain:
+      type: object
+      properties:
+        domain_name:
+          type: string
+        alternate_names:
+          type: array
+          items:
+            type: string
+      required:
+        - domain_name
     output_resource_name:
       "$ref": "/common-1.json#/definitions/longIdentifier"
   required:
   - account
   - identifier
-  - secret
+  oneOf:
+  - required:
+    - secret
+  - required:
+    - domain
 - additionalProperties: false
   properties:
     provider:

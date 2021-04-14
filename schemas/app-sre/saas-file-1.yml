@@ -92,6 +92,25 @@ properties:
               ref:
                 type: string
                 pattern: '^([0-9a-f]{40}|master|main|quayio|development-4\.0|internal|mk-release)$'
+              promotion:
+                type: object
+                additionalProperties: false
+                properties:
+                  auto:
+                    type: boolean
+                  publish:
+                    type: array
+                    items:
+                      type: string
+                    minItems: 1
+                  subscribe:
+                    type: array
+                    items:
+                      type: string
+                    minItems: 1
+                dependencies:
+                  auto:
+                  - subscribe
               parameters:
                 type: object
               upstream:
@@ -118,6 +137,8 @@ properties:
     type: array
     items:
       type: string
+  use_channel_in_image_tag:
+    type: boolean
 required:
 - "$schema"
 - labels

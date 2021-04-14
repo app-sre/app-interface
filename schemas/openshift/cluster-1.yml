@@ -125,8 +125,6 @@ properties:
         - 4100
       load_balancers:
         type: integer
-      upgrade:
-        type: string
       provision_shard_id:
         type: string
       autoscale:
@@ -228,6 +226,7 @@ properties:
               enum:
               - account-vpc
               - account-vpc-mesh
+              - account-tgw
               - cluster-vpc-requester
               - cluster-vpc-accepter
             name:
@@ -245,6 +244,8 @@ properties:
               type: object
             manageRoutes:
               type: boolean
+            cidrBlock:
+              type: string
             delete:
               type: boolean
           oneOf:
@@ -280,6 +281,28 @@ properties:
                 type: object
               manageRoutes:
                 type: boolean
+              delete:
+                type: boolean
+            required:
+            - provider
+            - name
+            - account
+          - properties:
+              provider:
+                type: string
+                enum:
+                - account-tgw
+              name:
+                type: string
+              account:
+                "$ref": "/common-1.json#/definitions/crossref"
+                "$schemaRef": "/aws/account-1.yml"
+              tags:
+                type: object
+              manageRoutes:
+                type: boolean
+              cidrBlock:
+                type: string
               delete:
                 type: boolean
             required:
@@ -371,6 +394,8 @@ properties:
           - openshift-vault-secrets
           - openshift-routes
           - openshift-network-policies
+          - openshift-resourcequotas
+          - openshift-limitranges
       e2eTests:
         type: array
         items:

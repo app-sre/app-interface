@@ -4,30 +4,24 @@ version: '1.0'
 type: object
 
 additionalProperties: false
+
 properties:
   "$schema":
     type: string
     enum:
-    - /openshift/cluster-addon-1.yml
+    - /app-sre/document-1.yml
   labels:
     "$ref": "/common-1.json#/definitions/labels"
+  app:
+    "$ref": "/common-1.json#/definitions/crossref"
+    "$schemaRef": "/app-sre/app-1.yml"
   name:
     type: string
-  description:
+  content_path:
     type: string
-  parameters:
-    type: array
-    items:
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-        value:
-          type: string
-      required:
-      - id
-      - value
 required:
 - "$schema"
 - labels
+- app
 - name
+- content_path

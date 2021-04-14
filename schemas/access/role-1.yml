@@ -92,11 +92,18 @@ properties:
           - admin
           - manager
           - owner
+  sendgrid_accounts:
+    type: array
+    items:
+      properties:
+        account:
+          "$ref": "/common-1.json#/definitions/crossref"
+          "$schemaRef": "/dependencies/sendgrid-account-1.yml"
   owned_saas_files:
     type: array
     items:
       "$ref": "/common-1.json#/definitions/crossref"
-      "$schemaRef": "/app-sre/saas-file-1.yml" 
+      "$schemaRef": "/app-sre/saas-file-1.yml"
 required:
 - $schema
 - labels

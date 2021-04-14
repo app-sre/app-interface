@@ -7,7 +7,7 @@ properties:
   "$schema":
     type: string
     enum:
-    - /terraform/kinesis-defaults-1.yml
+    - /aws/kinesis-defaults-1.yml
 
   name:
     type: string

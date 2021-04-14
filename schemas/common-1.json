@@ -5,7 +5,7 @@
   "definitions": {
     "query": {
       "type": "string",
-      "pattern": "(?i)^(select|explain) (?!analyze)[^;\\*]+;$"
+      "pattern": "(?i)^(select|explain) (?!analyze (?!select))[^;\\*]+;$"
     },
     "labels": {
       "type": "object",
@@ -35,8 +35,9 @@
       "type": "string",
       "minLength": 1
     },
-    "nonEmptyShortString": {
+    "k8sValidContainerName": {
       "type": "string",
+      "pattern": "[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*",
       "minLength": 1,
       "maxLength": 63
     },
@@ -127,48 +128,6 @@
       "required": [
         "path",
         "field"
-      ]
-    },
-    "serviceEscalation": {
-      "additionalProperties": false,
-      "type": "object",
-      "properties": {
-        "aliases": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "emailRecipients": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "pagerdutyRecipients": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "slackRecipients": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "webhookRecipients": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "anyOf": [
-        {"required": ["emailRecipients"]},
-        {"required": ["pagerdutyRecipients"]},
-        {"required": ["slackRecipients"]},
-        {"required": ["webhookRecipients"]}
       ]
     },
     "promSelector": {
