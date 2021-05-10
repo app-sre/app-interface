@@ -244,6 +244,8 @@ properties:
               type: object
             manageRoutes:
               type: boolean
+            manageSecurityGroups:
+              type: boolean
             cidrBlock:
               type: string
             delete:
@@ -300,6 +302,8 @@ properties:
               tags:
                 type: object
               manageRoutes:
+                type: boolean
+              manageSecurityGroups:
                 type: boolean
               cidrBlock:
                 type: string
