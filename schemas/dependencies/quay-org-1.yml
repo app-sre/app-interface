@@ -16,6 +16,9 @@ properties:
   instance:
     "$ref": "/common-1.json#/definitions/crossref"
     "$schemaRef": "/dependencies/quay-instance-1.yml"
+  mirror:
+    "$ref": "/common-1.json#/definitions/crossref"
+    "$schemaRef": "/dependencies/quay-org-1.yml"
   managedTeams:
     type: array
     items:

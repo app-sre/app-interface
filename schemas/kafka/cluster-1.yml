@@ -28,9 +28,12 @@ properties:
         - aws
       region:
         type: string
+      multi_az:
+        type: boolean
     required:
     - provider
     - region
+    - multi_az
 required:
 - "$schema"
 - labels

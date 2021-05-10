@@ -45,6 +45,8 @@ properties:
     type: string
   reset_password:
     type: string
+  secret:
+    "$ref": "/common-1.json#/definitions/vaultSecret"
   storage_class:
     type: string
   specs:
@@ -432,5 +434,25 @@ oneOf:
   - account
   - identifier
   - defaults
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - s3-cloudfront-public-key
+    region:
+      "$ref": "/aws/regions-1.yml#/properties/region"
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    identifier:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    secret:
+      "$ref": "/common-1.json#/definitions/vaultSecret"
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+  required:
+  - account
+  - identifier
+  - secret
 required:
 - provider

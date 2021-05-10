@@ -76,4 +76,5 @@ properties:
 required:
 - "$schema"
 - engine
+- engine_version
 - instance_class

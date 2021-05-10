@@ -241,6 +241,7 @@
   - { name: labels, type: json }
   - { name: name, type: string, isRequired: true }
   - { name: description, type: string, isRequired: true }
+  - { name: mirror, type: QuayOrg_v1 }
   - { name: managedRepos, type: boolean, isRequired: true }
   - { name: instance, type: QuayInstance_v1, isRequired: true }
   - { name: serverUrl, type: string }
@@ -384,6 +385,7 @@
   fields:
   - { name: provider, type: string, isRequired: true }
   - { name: region, type: string, isRequired: true }
+  - { name: multi_az, type: boolean, isRequired: true }
 
 - name: ClusterSpec_v1
   fields:
@@ -481,6 +483,7 @@
   - { name: account, type: AWSAccount_v1, isRequired: true }
   - { name: tags, type: json }
   - { name: manageRoutes, type: boolean }
+  - { name: manageSecurityGroups, type: boolean }
   - { name: cidrBlock, type: string }
   - { name: delete, type: boolean }
 
@@ -756,10 +759,21 @@
       elasticsearch: NamespaceTerraformResourceElasticSearch_v1
       acm: NamespaceTerraformResourceACM_v1
       kinesis: NamespaceTerraformResourceKinesis_v1
+      s3-cloudfront-public-key: NamespaceTerraformResourceS3CloudFrontPublicKey_v1
   fields:
   - { name: provider, type: string, isRequired: true }
   - { name: account, type: string, isRequired: true }
   - { name: identifier, type: string, isRequired: true }
+  - { name: output_resource_name, type: string }
+
+- name: NamespaceTerraformResourceS3CloudFrontPublicKey_v1
+  interface: NamespaceTerraformResource_v1
+  fields:
+  - { name: provider, type: string, isRequired: true }
+  - { name: account, type: string, isRequired: true }
+  - { name: region, type: string }
+  - { name: identifier, type: string, isRequired: true }
+  - { name: secret, type: VaultSecret_v1 }
   - { name: output_resource_name, type: string }
 
 - name: NamespaceTerraformResourceACM_v1
@@ -1114,12 +1128,17 @@
   - { name: permissions, type: PermissionQuayOrgTeam_v1, isList: true, isRequired: true }
   - { name: role, type: string, isRequired: true }
 
+- name: AppQuayReposNotificationVerificationMethod_v1
+  fields:
+  - { name: jiraBoard, type: JiraBoard_v1 }
+
 - name: AppQuayReposNotifications_v1
   fields:
   - { name: event, type: string, isRequired: true }
   - { name: severity, type: string }
   - { name: method, type: string, isRequired: true }
   - { name: escalationPolicy, type: AppEscalationPolicy_v1, isRequired: true }
+  - { name: verificationMethod, type: AppQuayReposNotificationVerificationMethod_v1 }
 
 - name: AppQuayRepos_v1
   fields:
