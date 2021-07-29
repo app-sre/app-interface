@@ -11,6 +11,8 @@ properties:
     - /openshift/terraform-resource-1.yml
   provider:
     type: string
+  annotations:
+    "$ref": "/common-1.json#/definitions/annotations"
   account:
     "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
   identifier:
@@ -112,6 +114,8 @@ oneOf:
       required:
       - cluster
       - access_level
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
   required:
   - account
   - identifier
@@ -167,6 +171,8 @@ oneOf:
       type: boolean
     replica_source:
       type: string
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
   required:
   - account
   - identifier
@@ -202,6 +208,8 @@ oneOf:
           type: integer
     output_resource_name:
       "$ref": "/common-1.json#/definitions/longIdentifier"
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
   required:
   - account
   - identifier
@@ -220,6 +228,8 @@ oneOf:
       "$ref": "/common-1.json#/definitions/longIdentifier"
     output_resource_name:
       "$ref": "/common-1.json#/definitions/longIdentifier"
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
     specs:
       type: array
       items:
@@ -257,6 +267,8 @@ oneOf:
       "$ref": "/common-1.json#/definitions/longIdentifier"
     output_resource_name:
       "$ref": "/common-1.json#/definitions/longIdentifier"
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
     specs:
       type: array
       items:
@@ -321,6 +333,8 @@ oneOf:
       "$ref": "/common-1.json#/definitions/longIdentifier"
     defaults:
       type: string
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
   required:
   - account
   - identifier
@@ -355,6 +369,8 @@ oneOf:
           type: boolean
     output_resource_name:
       "$ref": "/common-1.json#/definitions/longIdentifier"
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
   required:
   - account
   - identifier
@@ -375,6 +391,8 @@ oneOf:
       "$ref": "/common-1.json#/definitions/longIdentifier"
     defaults:
       type: string
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
   required:
   - account
   - identifier
@@ -406,6 +424,8 @@ oneOf:
         - domain_name
     output_resource_name:
       "$ref": "/common-1.json#/definitions/longIdentifier"
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
   required:
   - account
   - identifier
@@ -430,6 +450,8 @@ oneOf:
       type: string
     output_resource_name:
       "$ref": "/common-1.json#/definitions/longIdentifier"
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
   required:
   - account
   - identifier
@@ -450,6 +472,8 @@ oneOf:
       "$ref": "/common-1.json#/definitions/vaultSecret"
     output_resource_name:
       "$ref": "/common-1.json#/definitions/longIdentifier"
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
   required:
   - account
   - identifier
