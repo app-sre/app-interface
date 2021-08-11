@@ -80,6 +80,18 @@ properties:
     type: array
     items:
       type: string
+      enum:
+      - dedicated-admins
+      - dedicated-readers
+      - hive-admins
+      - hive-readers
+      - hive-frontend
+      - aws-account-operator-client
+      - gcp-project-operator-client
+      - observatorium-dev
+      - quay-app-sre-cluster-admins
+      - quay-devs-cluster-admins
+      - sda-dev
   managedClusterRoles:
     type: boolean
   spec:
@@ -96,8 +108,19 @@ properties:
         - aws
       region:
         type: string
+        enum:
+        - us-east-1
+        - us-east-2
+        - us-west-1
+        - us-west-2
+        - eu-west-1
+        - eu-west-2
       channel:
         type: string
+        enum:
+        - stable
+        - fast
+        - candidate
       version:
         type: string
       initial_version:
@@ -108,6 +131,11 @@ properties:
         type: integer
       instance_type:
         type: string
+        enum:
+        - m5.xlarge
+        - m5.2xlarge
+        - m5.4xlarge
+        - r5.2xlarge
       private:
         type: boolean
       storage:
@@ -141,6 +169,18 @@ properties:
     required:
     - provider
     - region
+    - version
+    - initial_version
+    - multi_az
+    - instance_type
+    - private
+    - storage
+    - load_balancers
+    oneOf:
+    - required:
+      - nodes
+    - required:
+      - autoscale
   externalConfiguration:
     type: object
     additionalProperties: false
@@ -163,6 +203,19 @@ properties:
     required:
     - schedule_type
     - schedule
+  additionalRouters:
+    type: array
+    maxItems: 1
+    items:
+      type: object
+      additionalProperties: false     
+      properties:
+        private:
+          type: boolean
+        route_selectors:
+          "$ref": "/common-1.json#/definitions/labels"
+      required:
+      - private
   network:
     type: object
     additionalProperties: false
@@ -377,6 +430,8 @@ properties:
     - identity
   automationToken:
     "$ref": "/common-1.json#/definitions/vaultSecret"
+  clusterAdminAutomationToken:
+    "$ref": "/common-1.json#/definitions/vaultSecret"
   description:
     type: string
   internal:
@@ -400,6 +455,7 @@ properties:
           - openshift-network-policies
           - openshift-resourcequotas
           - openshift-limitranges
+          - openshift-serviceaccount-tokens
       e2eTests:
         type: array
         items:
@@ -440,7 +496,13 @@ required:
 - "$schema"
 - labels
 - name
+- consoleUrl
+- kibanaUrl
+- prometheusUrl
+- serverUrl
+- elbFQDN
 - description
+- internal
 dependencies:
   jumpHost:
   - automationToken
