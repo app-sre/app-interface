@@ -53,6 +53,8 @@ properties:
           - github
           - gitlab
           - quay
+          - ci-int
+          - ci-ext
           - kafka
         services:
           type: array
@@ -92,3 +94,5 @@ required:
 - description
 - vault
 - kubeBinary
+- saasDeployJobTemplate
+- hashLength
