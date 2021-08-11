@@ -80,18 +80,6 @@ properties:
     type: array
     items:
       type: string
-      enum:
-      - dedicated-admins
-      - dedicated-readers
-      - hive-admins
-      - hive-readers
-      - hive-frontend
-      - aws-account-operator-client
-      - gcp-project-operator-client
-      - observatorium-dev
-      - quay-app-sre-cluster-admins
-      - quay-devs-cluster-admins
-      - sda-dev
   managedClusterRoles:
     type: boolean
   spec:
@@ -108,19 +96,8 @@ properties:
         - aws
       region:
         type: string
-        enum:
-        - us-east-1
-        - us-east-2
-        - us-west-1
-        - us-west-2
-        - eu-west-1
-        - eu-west-2
       channel:
         type: string
-        enum:
-        - stable
-        - fast
-        - candidate
       version:
         type: string
       initial_version:
@@ -131,11 +108,6 @@ properties:
         type: integer
       instance_type:
         type: string
-        enum:
-        - m5.xlarge
-        - m5.2xlarge
-        - m5.4xlarge
-        - r5.2xlarge
       private:
         type: boolean
       storage:
