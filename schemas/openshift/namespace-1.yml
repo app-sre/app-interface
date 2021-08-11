@@ -49,30 +49,6 @@ properties:
       "$ref": "/common-1.json#/definitions/crossref"
       "$schemaRef": "/openshift/namespace-1.yml"
 
-  openshiftAcme:
-    type: object
-    properties:
-      config:
-        "$ref": "/common-1.json#/definitions/crossref"
-        "$schemaRef": "/openshift/acme-1.yml"
-      accountSecret:
-        type: object
-        properties:
-          provider:
-            type: string
-            enum:
-            - vault-secret
-          name:
-            type: string
-          path:
-            type: string
-          version:
-            type: integer
-        required:
-        - path
-        - version
-
-
   managedRoles:
     type: boolean
 
@@ -87,12 +63,8 @@ properties:
       properties:
         resource:
           type: string
-          enum:
-          - Project
         override:
           type: string
-          enum:
-          - Project.config.openshift.io
 
   managedResourceNames:
     type: array
@@ -158,3 +130,5 @@ required:
 - name
 - description
 - cluster
+- app
+- environment

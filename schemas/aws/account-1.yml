@@ -76,4 +76,6 @@ required:
 - uid
 - resourcesDefaultRegion
 - providerVersion
+- accountOwners
 - automationToken
+- premiumSupport

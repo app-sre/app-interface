@@ -241,7 +241,10 @@ properties:
         url:
           type: string
         gitlabRepoOwners:
-          type: boolean
+          type: object
+          properties:
+            enabled:
+              type: boolean
         gitlabHousekeeping:
           type: object
           properties:
@@ -261,6 +264,8 @@ properties:
                 - 0
             enable_closing:
               type: boolean
+            pipeline_timeout:
+              type: integer
           required:
           - enabled
           - rebase
@@ -324,3 +329,9 @@ required:
 - labels
 - name
 - description
+- escalationPolicy
+- onboardingStatus
+- serviceOwners
+- grafanaUrl
+- sopsUrl
+- architectureDocument
