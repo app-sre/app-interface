@@ -4,6 +4,7 @@ $schema: /app-interface/app-interface-settings-1.yml
 labels: {}
 
 name: app-interface-settings
+
 description: App Interface settings
 
 # if set to true, use vault as secret source

@@ -1,0 +1,23 @@
+---
+$schema: /app-sre/app-1.yml
+
+labels:
+  service: example
+
+name: example
+
+description: |
+  Example App
+
+escalationPolicy:
+  $ref: /teams/example-escalation.yml
+
+onboardingStatus: OnBoarded
+
+serviceOwners:
+- name: example service owner
+  email: example@example.com
+
+architectureDocument: https://TODO
+sopsUrl: https://github.com/TODO
+grafanaUrl: https://TODO

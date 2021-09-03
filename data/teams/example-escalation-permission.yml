@@ -1,0 +1,12 @@
+---
+$schema: /access/permission-1.yml
+
+labels: {}
+
+name: example-escalation-permission
+description: example escalation permission
+
+service: slack-usergroup
+handle: example-escalation-undefined
+
+channels: []

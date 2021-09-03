@@ -1,0 +1,14 @@
+---
+$schema: /app-sre/product-1.yml
+
+labels:
+  service: example
+
+name: Example
+
+description: |
+  Example product.
+
+productOwners:
+- name: example
+  email: example@example.com
