@@ -15,8 +15,9 @@ properties:
     type: string
   description:
     type: string
-  token:
-    "$ref": "/common-1.json#/definitions/vaultSecret"
+  instance:
+    "$ref": "/common-1.json#/definitions/crossref"
+    "$schemaRef": "/dependencies/pagerduty-instance-1.yml"
   scheduleID:
     type: string
   escalationPolicyID:
@@ -26,7 +27,7 @@ required:
 - labels
 - name
 - description
-- token
+- instance
 oneOf:
   - required:
     - scheduleID

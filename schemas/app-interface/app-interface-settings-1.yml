@@ -53,6 +53,8 @@ properties:
           - github
           - gitlab
           - quay
+          - ci-int
+          - ci-ext
           - kafka
         services:
           type: array
@@ -85,6 +87,10 @@ properties:
     required:
     - imageRepository
     - pullSecret
+  pushGatewayCluster:
+    "$ref": "/common-1.json#/definitions/crossref"
+    "$schemaRef": "/openshift/cluster-1.yml"
+
 required:
 - "$schema"
 - labels

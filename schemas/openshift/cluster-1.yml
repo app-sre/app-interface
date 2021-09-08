@@ -160,9 +160,30 @@ properties:
       schedule:
         type: string
         pattern: '(((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*) ?){5}'
+      workloads:
+        type: array
+        items:
+          type: string
+      conditions:
+        additionalProperties: false
+        properties:
+          soakDays:
+            type: integer
     required:
-    - schedule_type
     - schedule
+  additionalRouters:
+    type: array
+    maxItems: 1
+    items:
+      type: object
+      additionalProperties: false
+      properties:
+        private:
+          type: boolean
+        route_selectors:
+          "$ref": "/common-1.json#/definitions/labels"
+      required:
+      - private
   network:
     type: object
     additionalProperties: false
@@ -250,6 +271,8 @@ properties:
               type: string
             delete:
               type: boolean
+            assumeRole:
+              type: string
           oneOf:
           - properties:
               provider:
@@ -309,6 +332,8 @@ properties:
                 type: string
               delete:
                 type: boolean
+              assumeRole:
+                type: string
             required:
             - provider
             - name
@@ -377,6 +402,8 @@ properties:
     - identity
   automationToken:
     "$ref": "/common-1.json#/definitions/vaultSecret"
+  clusterAdminAutomationToken:
+    "$ref": "/common-1.json#/definitions/vaultSecret"
   description:
     type: string
   internal:
@@ -400,6 +427,7 @@ properties:
           - openshift-network-policies
           - openshift-resourcequotas
           - openshift-limitranges
+          - openshift-serviceaccount-tokens
       e2eTests:
         type: array
         items:
