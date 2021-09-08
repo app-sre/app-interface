@@ -10,7 +10,7 @@ description: |
   Example App
 
 escalationPolicy:
-  $ref: /teams/example-escalation.yml
+  $ref: /teams/example-team/escalation-policies/example-escalation-policy.yml
 
 onboardingStatus: OnBoarded
 

@@ -1,0 +1,16 @@
+---
+$schema: /app-sre/escalation-policy-1.yml
+
+labels: {}
+
+name: example-escalation-policy
+
+description: |
+  example-escalation-policy
+
+channels:
+  slackUserGroup:
+  - $ref: /teams/example-team/escalation-permissions/example-escalation-permission.yml
+
+  email:
+  - example@example.com
