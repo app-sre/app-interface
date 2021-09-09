@@ -25,6 +25,10 @@ properties:
       type: string
   user_policy:
     type: object
+  assume_role:
+    type: string
+  inline_policy:
+    type: object
   output_resource_name:
     "$ref": "/common-1.json#/definitions/longIdentifier"
   defaults:
@@ -119,6 +123,28 @@ oneOf:
   required:
   - account
   - identifier
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - aws-iam-role
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    identifier:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    assume_role:
+      type: string
+    inline_policy:
+      type: object
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
+  required:
+  - account
+  - identifier
+  - assume_role
 - additionalProperties: false
   properties:
     provider:

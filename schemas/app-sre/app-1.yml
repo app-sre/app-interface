@@ -31,7 +31,7 @@ properties:
     description: |
       Link to the git repo path that contains the top-level for the service
       SOPs.
-    pattern: "^https?://(github.com|gitlab.cee.redhat.com)/"
+    pattern: "^https?://(github.com|gitlab.cee.redhat.com|clouddot.pages.redhat.com)/"
 
   architectureDocument:
     type: string
@@ -241,7 +241,10 @@ properties:
         url:
           type: string
         gitlabRepoOwners:
-          type: boolean
+          type: object
+          properties:
+            enabled:
+              type: boolean
         gitlabHousekeeping:
           type: object
           properties:
@@ -261,6 +264,8 @@ properties:
                 - 0
             enable_closing:
               type: boolean
+            pipeline_timeout:
+              type: integer
           required:
           - enabled
           - rebase

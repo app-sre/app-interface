@@ -69,8 +69,6 @@ properties:
     type: string
   allow_major_version_upgrade:
     type: boolean
-  replicate_source_db:
-    type: string
   iops:
     type: integer
 required:

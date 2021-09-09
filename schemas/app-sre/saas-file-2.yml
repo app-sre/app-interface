@@ -9,7 +9,7 @@ properties:
   "$schema":
     type: string
     enum:
-    - /app-sre/saas-file-1.yml
+    - /app-sre/saas-file-2.yml
   labels:
     "$ref": "/common-1.json#/definitions/labels"
   name:
@@ -19,9 +19,9 @@ properties:
   app:
     "$ref": "/common-1.json#/definitions/crossref"
     "$schemaRef": "/app-sre/app-1.yml"
-  instance:
+  pipelinesProvider:
     "$ref": "/common-1.json#/definitions/crossref"
-    "$schemaRef": "/dependencies/jenkins-instance-1.yml"
+    "$schemaRef": "/app-sre/pipelines-provider-1.yml"
   slack:
     type: object
     properties:
@@ -114,7 +114,17 @@ properties:
               parameters:
                 type: object
               upstream:
-                type: string
+                type: object
+                additionalProperties: false
+                properties:
+                  instance:
+                    "$ref": "/common-1.json#/definitions/crossref"
+                    "$schemaRef": "/dependencies/jenkins-instance-1.yml"
+                  name:
+                    type: string
+                required:
+                - instance
+                - name
               disable:
                 type: boolean
               delete:
@@ -131,8 +141,6 @@ properties:
     type: boolean
   compare:
     type: boolean
-  timeout:
-    type: integer
   publishJobLogs:
     type: boolean
   clusterAdmin:
@@ -149,7 +157,7 @@ required:
 - name
 - description
 - app
-- instance
+- pipelinesProvider
 - slack
 - managedResourceTypes
 - resourceTemplates

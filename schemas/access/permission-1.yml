@@ -158,6 +158,7 @@ oneOf:
         type: string
     description:
       type: string
+      maxLength: 140
   required:
   - handle
   - description

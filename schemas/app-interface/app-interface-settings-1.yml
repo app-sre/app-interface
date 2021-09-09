@@ -85,6 +85,10 @@ properties:
     required:
     - imageRepository
     - pullSecret
+  pushGatewayCluster:
+    "$ref": "/common-1.json#/definitions/crossref"
+    "$schemaRef": "/openshift/cluster-1.yml"
+
 required:
 - "$schema"
 - labels
