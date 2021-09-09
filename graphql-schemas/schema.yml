@@ -1091,8 +1091,8 @@
   - { name: description, type: string, isRequired: true }
   - { name: grafanaUrl, type: string }
   - { name: cluster, type: Cluster_v1, isRequired: true }
-  - { name: app, type: App_v1, isRequired: true }
-  - { name: environment, type: Environment_v1, isRequired: true}
+  - { name: app, type: App_v1 }
+  - { name: environment, type: Environment_v1 }
   - { name: limitRanges, type: LimitRange_v1 }
   - { name: quota, type: ResourceQuota_v1 }
   - { name: networkPoliciesAllow, type: Namespace_v1, isList: true }
