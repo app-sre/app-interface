@@ -1050,7 +1050,7 @@
   fields:
   - { name: provider, type: string }
   - { name: account, type: string }
-  - { name: identifier, type: string }
+  - { name: identifier, type: string, isRequired: true }
   - { name: region, type: string }
   - { name: vpc, type: AWSVPC_v1 }
   - { name: certificate_arn, type: string }
