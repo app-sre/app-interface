@@ -91,7 +91,6 @@ properties:
                 "$schemaRef": "/openshift/namespace-1.yml"
               ref:
                 type: string
-                pattern: '^([0-9a-f]{40}|master|main|quayio|development-4\.0|internal|mk-release)$'
               promotion:
                 type: object
                 additionalProperties: false

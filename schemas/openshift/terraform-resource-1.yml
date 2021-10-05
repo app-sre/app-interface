@@ -128,9 +128,12 @@ oneOf:
           "$schemaRef": "/openshift/cluster-1.yml"
         access_level:
           type: string
-      required:
-      - cluster
-      - access_level
+        assume_role:
+          type: string
+      oneOf:
+      - required:
+        - cluster
+        - access_level
     annotations:
       "$ref": "/common-1.json#/definitions/annotations"
   required:
@@ -519,5 +522,53 @@ oneOf:
   - account
   - identifier
   - secret
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - alb
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    identifier:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    region:
+      "$ref": "/aws/regions-1.yml#/properties/region"
+    vpc:
+      "$ref": "/common-1.json#/definitions/crossref"
+      "$schemaRef": "/aws/vpc-1.yml"
+    certificate_arn:
+      type: string
+    targets:
+      type: array
+      items:
+        type: object
+        additionalProperties: false
+        properties:
+          name:
+            type: string
+          default:
+            type: boolean
+          weight:
+            type: integer
+          ips:
+            type: array
+            items:
+              type: string
+        required:
+        - name
+        - default
+        - weight
+        - ips
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
+  required:
+  - account
+  - identifier
+  - vpc
+  - certificate_arn
+  - targets
 required:
 - provider
