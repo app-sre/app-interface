@@ -51,6 +51,8 @@ properties:
     type: string
   reset_password:
     type: string
+  ca_cert:
+    "$ref": "/common-1.json#/definitions/vaultSecret"
   secret:
     "$ref": "/common-1.json#/definitions/vaultSecret"
   storage_class:
@@ -84,6 +86,17 @@ properties:
         "$schemaRef": "/openshift/cluster-1.yml"
       access_level:
         type: string
+      assume_role:
+        type: string
+  vpc:
+    "$ref": "/common-1.json#/definitions/crossref"
+    "$schemaRef": "/aws/vpc-1.yml"
+  certificate_arn:
+    type: string
+  targets:
+    type: array
+    items:
+      type: object
 oneOf:
 - "$ref": "/aws/s3-1.yml"
 - additionalProperties: false
@@ -197,6 +210,8 @@ oneOf:
       type: boolean
     replica_source:
       type: string
+    ca_cert:
+      "$ref": "/common-1.json#/definitions/vaultSecret"
     annotations:
       "$ref": "/common-1.json#/definitions/annotations"
   required:

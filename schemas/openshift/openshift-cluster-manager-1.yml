@@ -30,6 +30,17 @@ properties:
     type: array
     items:
       type: string
+  versionSignal:
+    type: object
+    additionalProperties: false
+    properties:
+      database:
+        "$ref": "/common-1.json#/definitions/vaultSecret"
+      query:
+        type: string
+    required:
+    - database
+    - query
 required:
 - "$schema"
 - labels

@@ -37,6 +37,19 @@ properties:
     type: array
     items:
       type: string
+  buildsCleanupRules:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        keep_hours:
+          type: integer
+      required:
+      - name
+      - keep_hours
 required:
 - "$schema"
 - labels
