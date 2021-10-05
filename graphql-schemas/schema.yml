@@ -329,8 +329,24 @@
   - { name: name, type: string, isRequired: true }
   - { name: description, type: string, isRequired: true }
   - { name: token, type: VaultSecret_v1, isRequired: true }
+  - { name: api_client, type: SlackWorkspaceApiClient_v1 }
   - { name: integrations, type: SlackWorkspaceIntegration_v1, isList: true}
   - { name: managedUsergroups, type: string, isList: true, isRequired: true }
+
+- name: SlackWorkspaceApiClient_v1
+  fields:
+  - { name: global, type: SlackWorkspaceApiClientGlobalConfig_v1 }
+  - { name: methods, type: SlackWorkspaceApiClientMethodConfig_v1, isList: true }
+
+- name: SlackWorkspaceApiClientGlobalConfig_v1
+  fields:
+  - { name: max_retries, type: int }
+  - { name: timeout, type: int }
+
+- name: SlackWorkspaceApiClientMethodConfig_v1
+  fields:
+  - { name: name, type: string }
+  - { name: args, type: json }
 
 - name: SlackWorkspaceIntegration_v1
   fields:
@@ -599,6 +615,11 @@
       schema: /openshift/namespace-1.yml
       subAttr: kafkaCluster
 
+- name: VersionSignal_v1
+  fields:
+  - { name: database, type: VaultSecret_v1 }
+  - { name: query, type: string }
+
 - name: OpenShiftClusterManager_v1
   fields:
   - { name: schema, type: string, isRequired: true }
@@ -611,6 +632,7 @@
   - { name: accessTokenUrl, type: string, isRequired: true }
   - { name: offlineToken, type: VaultSecret_v1 }
   - { name: blockedVersions, type: string, isList: true }
+  - { name: versionSignal, type: VersionSignal_v1 }
   - name: clusters
     type: Cluster_v1
     isList: true
@@ -701,6 +723,11 @@
   - { name: vpc_id, type: string, isRequired: true }
   - { name: cidr_block, type: string, isRequired: true }
   - { name: region, type: string, isRequired: true }
+  - { name: subnets, type: AWSSubnet_v1, isList: true }
+
+- name: AWSSubnet_v1
+  fields:
+  - { name: id, type: string }
 
 - name: AWSECR_v1
   fields:
@@ -792,6 +819,7 @@
       acm: NamespaceTerraformResourceACM_v1
       kinesis: NamespaceTerraformResourceKinesis_v1
       s3-cloudfront-public-key: NamespaceTerraformResourceS3CloudFrontPublicKey_v1
+      alb: NamespaceTerraformResourceALB_v1
   fields:
   - { name: provider, type: string, isRequired: true }
   - { name: account, type: string, isRequired: true }
@@ -848,6 +876,7 @@
   - { name: reset_password, type: string }
   - { name: enhanced_monitoring, type: boolean }
   - { name: replica_source, type: string }
+  - { name: ca_cert, type: VaultSecret_v1 }
   - { name: annotations, type: json }
 
 - name: NamespaceTerraformResourceS3_v1
@@ -868,8 +897,9 @@
 
 - name: NamespaceTerraformResourceServiceAccountAWSInfrastructureAccess_v1
   fields:
-  - { name: cluster, type: Cluster_v1, isRequired: true }
-  - { name: access_level, type: string, isRequired: true }
+  - { name: cluster, type: Cluster_v1 }
+  - { name: access_level, type: string }
+  - { name: assume_role, type: string }
 
 - name: NamespaceTerraformResourceServiceAccount_v1
   interface: NamespaceTerraformResource_v1
@@ -1015,6 +1045,27 @@
   - { name: output_resource_name, type: string }
   - { name: annotations, type: json }
 
+- name: NamespaceTerraformResourceALB_v1
+  interface: NamespaceTerraformResource_v1
+  fields:
+  - { name: provider, type: string }
+  - { name: account, type: string }
+  - { name: identifier, type: string }
+  - { name: region, type: string }
+  - { name: vpc, type: AWSVPC_v1 }
+  - { name: certificate_arn, type: string }
+  - { name: targets, type: NamespaceTerraformResourceALBTargets_v1, isList: true }
+  - { name: vpc, type: AWSVPC_v1 }
+  - { name: output_resource_name, type: string }
+  - { name: annotations, type: json }
+
+- name: NamespaceTerraformResourceALBTargets_v1
+  fields:
+  - { name: name, type: string }
+  - { name: default, type: boolean }
+  - { name: weight, type: int }
+  - { name: ips, type: string, isList: true }
+
 - name: ResourceValues_v1
   fields:
   - { name: cpu, type: string }
@@ -1139,6 +1190,7 @@
   - { name: ocpReleaseEcrIdentifier, type: string, isRequired: true }
   - { name: ocpArtDevEcrIdentifier, type: string, isRequired: true }
   - { name: quayTargetOrgs, type: QuayOrg_v1, isRequired: true, isList: true}
+  - { name: mirrorChannels, type: string, isList: true }
 
 - name: ContainerImageMirror_v1
   fields:
