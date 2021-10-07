@@ -35,3 +35,4 @@ required:
   - ocpReleaseEcrIdentifier
   - ocpArtDevEcrIdentifier
   - quayTargetOrgs
+  - mirrorChannels

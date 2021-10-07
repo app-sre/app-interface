@@ -24,6 +24,16 @@ properties:
     type: string
   region:
     type: string
+  subnets:
+    type: array
+    items:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+      required:
+      - id
 required:
 - "$schema"
 - labels

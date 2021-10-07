@@ -59,6 +59,13 @@ properties:
                   properties:
                     record:
                       type: string
+                    expr:
+                      type: string
+                    labels:
+                      type: object
+                - type: object
+                  additionalProperties: false
+                  properties:
                     alert:
                       type: string
                     labels:
@@ -72,6 +79,8 @@ properties:
                         team:
                           type: string
                         component:
+                          type: string
+                        channel:
                           type: string
                         route:
                           type: string

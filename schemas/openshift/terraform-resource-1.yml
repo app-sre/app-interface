@@ -97,6 +97,8 @@ properties:
     type: array
     items:
       type: object
+  paths:
+    type: object
 oneOf:
 - "$ref": "/aws/s3-1.yml"
 - additionalProperties: false
@@ -551,8 +553,14 @@ oneOf:
             type: string
           default:
             type: boolean
-          weight:
-            type: integer
+          weights:
+            type: object
+            additionalProperties: false
+            properties:
+              read:
+                type: integer
+              write:
+                type: integer
           ips:
             type: array
             items:
@@ -560,8 +568,20 @@ oneOf:
         required:
         - name
         - default
-        - weight
+        - weights
         - ips
+    paths:
+      type: object
+      additionalProperties: false
+      properties:
+        read:
+          type: array
+          items:
+            type: string
+        write:
+          type: array
+          items:
+            type: string
     annotations:
       "$ref": "/common-1.json#/definitions/annotations"
   required:

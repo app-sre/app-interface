@@ -345,8 +345,8 @@
 
 - name: SlackWorkspaceApiClientMethodConfig_v1
   fields:
-  - { name: name, type: string }
-  - { name: args, type: json }
+  - { name: name, type: string, isRequired: true }
+  - { name: args, type: json, isRequired: true }
 
 - name: SlackWorkspaceIntegration_v1
   fields:
@@ -617,8 +617,8 @@
 
 - name: VersionSignal_v1
   fields:
-  - { name: database, type: VaultSecret_v1 }
-  - { name: query, type: string }
+  - { name: database, type: VaultSecret_v1, isRequired: true }
+  - { name: query, type: string, isRequired: true }
 
 - name: OpenShiftClusterManager_v1
   fields:
@@ -678,6 +678,7 @@
   - { name: enableDeletion, type: boolean }
   - { name: disable, type: DisableClusterAutomations_v1 }
   - { name: deleteKeys, type: string, isList: true }
+  - { name: resetPasswords, type: AWSAccountResetPassword_v1, isList: true }
   - { name: premiumSupport, type: boolean }
   - name: ecrs
     type: AWSECR_v1
@@ -701,6 +702,11 @@
     synthetic:
       schema: /access/role-1.yml
       subAttr: aws_groups
+
+- name: AWSAccountResetPassword_v1
+  fields:
+  - { name: user, type: User_v1, isRequired: true }
+  - { name: requestId, type: string, isRequired: true }
 
 - name: AWSUserPolicy_v1
   fields:
@@ -727,7 +733,7 @@
 
 - name: AWSSubnet_v1
   fields:
-  - { name: id, type: string }
+  - { name: id, type: string, isRequired: true }
 
 - name: AWSECR_v1
   fields:
@@ -1055,6 +1061,7 @@
   - { name: vpc, type: AWSVPC_v1, isRequired: true }
   - { name: certificate_arn, type: string, isRequired: true }
   - { name: targets, type: NamespaceTerraformResourceALBTargets_v1, isRequired: true, isList: true }
+  - { name: paths, type: NamespaceTerraformResourceALBPaths_v1 }
   - { name: vpc, type: AWSVPC_v1, isRequired: true }
   - { name: output_resource_name, type: string }
   - { name: annotations, type: json }
@@ -1063,8 +1070,18 @@
   fields:
   - { name: name, type: string, isRequired: true }
   - { name: default, type: boolean, isRequired: true }
-  - { name: weight, type: int, isRequired: true }
+  - { name: weights, type: NamespaceTerraformResourceALBTargetWeights_v1, isRequired: true }
   - { name: ips, type: string, isRequired: true, isList: true }
+
+- name: NamespaceTerraformResourceALBTargetWeights_v1
+  fields:
+  - { name: read, type: int, isRequired: true }
+  - { name: write, type: int, isRequired: true }
+
+- name: NamespaceTerraformResourceALBPaths_v1
+  fields:
+  - { name: read, type: string, isList: true }
+  - { name: write, type: string, isList: true }
 
 - name: ResourceValues_v1
   fields:
@@ -1139,6 +1156,7 @@
   - { name: path, type: string, isRequired: true }
   - { name: labels, type: json }
   - { name: name, type: string, isRequired: true }
+  - { name: delete, type: boolean }
   - { name: description, type: string, isRequired: true }
   - { name: grafanaUrl, type: string }
   - { name: cluster, type: Cluster_v1, isRequired: true }
@@ -1190,7 +1208,7 @@
   - { name: ocpReleaseEcrIdentifier, type: string, isRequired: true }
   - { name: ocpArtDevEcrIdentifier, type: string, isRequired: true }
   - { name: quayTargetOrgs, type: QuayOrg_v1, isRequired: true, isList: true}
-  - { name: mirrorChannels, type: string, isList: true }
+  - { name: mirrorChannels, type: string, isRequired: true, isList: true }
 
 - name: ContainerImageMirror_v1
   fields:

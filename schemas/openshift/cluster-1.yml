@@ -123,6 +123,7 @@ properties:
         - 3100
         - 3600
         - 4100
+        - 7100
       load_balancers:
         type: integer
       provision_shard_id:
@@ -419,6 +420,7 @@ properties:
           enum:
           - openshift-groups
           - openshift-namespaces
+          - openshift-namespace-labels
           - openshift-resources
           - openshift-rolebindings
           - openshift-users
