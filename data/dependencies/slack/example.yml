@@ -1,0 +1,12 @@
+---
+$schema: /dependencies/slack-workspace-1.yml
+
+labels:
+  service: slack
+
+name: example
+description: Slack example workspace
+
+token:
+  path: ''
+  field: ''

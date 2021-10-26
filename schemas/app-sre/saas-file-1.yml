@@ -14,6 +14,7 @@ properties:
     "$ref": "/common-1.json#/definitions/labels"
   name:
     type: string
+    maxLength: 40
   description:
     type: string
   app:
@@ -141,6 +142,11 @@ properties:
     type: array
     items:
       type: string
+      # allowed patterns:
+      # - quay.io
+      # - registry.redhat.io
+      # - ECR
+      pattern: '^(quay\.io|registry\.redhat\.io|[^.]+\.dkr\.ecr\.[^.]+\.amazonaws\.com).*$'
   use_channel_in_image_tag:
     type: boolean
 required:

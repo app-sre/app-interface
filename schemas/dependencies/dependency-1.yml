@@ -17,8 +17,16 @@ properties:
     type: string
   statefulness:
     type: string
+    enum:
+    - Durable
+    - Cache
+    - Stateless
   opsModel:
     type: string
+    enum:
+    - Hosted
+    - External
+    - Internal
   statusPage:
     type: string
     format: uri
@@ -26,6 +34,11 @@ properties:
     "$ref": "/common-1.json#/definitions/serviceLevel"
   dependencyFailureImpact:
     type: string
+    enum:
+    - No Impact
+    - Partial Outage
+    - Major Outage
+    - Complete Outage
   monitoring:
     type: object
     properties:

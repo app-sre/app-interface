@@ -20,6 +20,12 @@ properties:
 
   onboardingStatus:
     type: string
+    enum:
+    - Proposed         # The App is being proposed to be running by the App SRE team
+    - InProgress       # The app is currently being on-boarded
+    - TransitionPeriod # The app is proving SLI/SLOs for a determined period of time
+    - OnBoarded        # The app is fully on-boarded, App SRE are carrying the pager
+    - BestEffort       # The app is supported on a best effort basis
 
   grafanaUrl:
     type: string
@@ -31,7 +37,6 @@ properties:
     description: |
       Link to the git repo path that contains the top-level for the service
       SOPs.
-    pattern: "^https?://(github.com|gitlab.cee.redhat.com|clouddot.pages.redhat.com)/"
 
   architectureDocument:
     type: string
@@ -238,6 +243,12 @@ properties:
           type: string
         resource:
           type: string
+          enum:
+          - upstream
+          - cicd
+          - saasrepo
+          - bundle
+          - other
         url:
           type: string
         gitlabRepoOwners:
@@ -329,3 +340,9 @@ required:
 - labels
 - name
 - description
+- escalationPolicy
+- onboardingStatus
+- serviceOwners
+- grafanaUrl
+- sopsUrl
+- architectureDocument

@@ -1,0 +1,16 @@
+---
+$schema: /app-sre/escalation-policy-1.yml
+
+labels: {}
+
+name: placeholder-escalation
+
+description: |
+  Any service referencing this file has not defined its escalationPolicy and must be fixed.
+
+channels:
+  slackUserGroup:
+  - $ref: /teams/placeholder-escalation-permission.yml
+
+  email:
+  - owners+escalation-undefined@example.com

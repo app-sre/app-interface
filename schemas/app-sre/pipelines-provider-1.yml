@@ -30,6 +30,8 @@ properties:
         type: integer
       minimum:
         type: integer
+    required:
+    - days
 oneOf:
 - properties:
     provider:
@@ -47,3 +49,4 @@ required:
 - name
 - description
 - provider
+- retention

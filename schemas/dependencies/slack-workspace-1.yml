@@ -17,6 +17,31 @@ properties:
     type: string
   token:
     "$ref": "/common-1.json#/definitions/vaultSecret"
+  api_client:
+    type: object
+    properties:
+      global:
+        type: object
+        properties:
+          max_retries:
+            type: integer
+          timeout:
+            type: integer
+        additionalProperties: false
+      methods:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+            args:
+              type: object
+          required:
+            - name
+            - args
+          additionalProperties: false
+    additionalProperties: false
   integrations:
     type: array
     items:
@@ -24,6 +49,15 @@ properties:
       properties:
         name:
           type: string
+          enum:
+          - jira-watcher
+          - openshift-saas-deploy
+          - unleash-watcher
+          - sentry-helper
+          - slack-sender
+          - openshift-upgrade-watcher
+          - slack-cluster-usergroups
+          - qontract-cli
       token:
         "$ref": "/common-1.json#/definitions/vaultSecret"
       channel:

@@ -5,10 +5,24 @@ labels: {}
 
 name: appint-ex-01
 description: Example app-interface cluster
+consoleUrl: ''
+kibanaUrl: ''
+prometheusUrl: ''
+alertmanagerUrl: ''
+serverUrl: 'https://api.cluster.example.com:6443'
+elbFQDN: ''
 
 spec:
   provider: aws
   region: us-east-1
+  version: ''
+  initial_version: ''
+  multi_az: true
+  instance_type: ''
+  private: true
+  storage: 1
+  load_balancers: 0
+  nodes: 0
 
 network:
   vpc: 10.0.0.0/16
@@ -38,3 +52,5 @@ peering:
       $ref: /aws/app-int-example/account.yml
     tags:
       Name: test
+
+internal: false

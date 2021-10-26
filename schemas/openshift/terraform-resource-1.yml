@@ -51,6 +51,8 @@ properties:
     type: string
   reset_password:
     type: string
+  ca_cert:
+    "$ref": "/common-1.json#/definitions/vaultSecret"
   secret:
     "$ref": "/common-1.json#/definitions/vaultSecret"
   storage_class:
@@ -84,6 +86,19 @@ properties:
         "$schemaRef": "/openshift/cluster-1.yml"
       access_level:
         type: string
+      assume_role:
+        type: string
+  vpc:
+    "$ref": "/common-1.json#/definitions/crossref"
+    "$schemaRef": "/aws/vpc-1.yml"
+  certificate_arn:
+    type: string
+  targets:
+    type: array
+    items:
+      type: object
+  paths:
+    type: object
 oneOf:
 - "$ref": "/aws/s3-1.yml"
 - additionalProperties: false
@@ -115,9 +130,14 @@ oneOf:
           "$schemaRef": "/openshift/cluster-1.yml"
         access_level:
           type: string
-      required:
-      - cluster
-      - access_level
+        assume_role:
+          type: string
+      oneOf:
+      - required:
+        - cluster
+        - access_level
+      - required:
+        - assume_role
     annotations:
       "$ref": "/common-1.json#/definitions/annotations"
   required:
@@ -177,6 +197,28 @@ oneOf:
           type: string
         instance_class:
           type: string
+          enum:
+          - db.t2.micro
+          - db.t2.small
+          - db.t3.small
+          - db.m3.medium
+          - db.t3.medium
+          - db.m4.large
+          - db.m4.xlarge
+          - db.m4.2xlarge
+          - db.m5.large
+          - db.m5.xlarge
+          - db.m5.2xlarge
+          - db.m6g.large
+          - db.r4.large
+          - db.r4.xlarge
+          - db.r4.2xlarge
+          - db.r4.4xlarge
+          - db.r4.8xlarge
+          - db.r4.16xlarge
+          - db.r5.large
+          - db.r5.xlarge
+          - db.r5.2xlarge
         allocated_storage:
           type: integer
         backup_retention_period:
@@ -197,6 +239,8 @@ oneOf:
       type: boolean
     replica_source:
       type: string
+    ca_cert:
+      "$ref": "/common-1.json#/definitions/vaultSecret"
     annotations:
       "$ref": "/common-1.json#/definitions/annotations"
   required:
@@ -230,6 +274,14 @@ oneOf:
           type: string
         node_type:
           type: string
+          enum:
+          - cache.m5.large
+          - cache.m5.xlarge
+          - cache.m5.2xlarge
+          - cache.r5.large
+          - cache.r5.xlarge
+          - cache.r5.2xlarge
+          - cache.r3.xlarge
         port:
           type: integer
     output_resource_name:
@@ -504,5 +556,75 @@ oneOf:
   - account
   - identifier
   - secret
+- additionalProperties: false
+  properties:
+    provider:
+      type: string
+      enum:
+      - alb
+    account:
+      "$ref": "/aws/tenant_accounts-1.yml#/properties/account"
+    identifier:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    output_resource_name:
+      "$ref": "/common-1.json#/definitions/longIdentifier"
+    region:
+      "$ref": "/aws/regions-1.yml#/properties/region"
+    vpc:
+      "$ref": "/common-1.json#/definitions/crossref"
+      "$schemaRef": "/aws/vpc-1.yml"
+    certificate_arn:
+      type: string
+    targets:
+      type: array
+      # force a minimum of 2 items due to
+      # https://github.com/hashicorp/terraform-provider-aws/pull/15112#issuecomment-791047457
+      # this can be removed once all aws accounts are using a provider >= 3.31.0
+      minItems: 2
+      items:
+        type: object
+        additionalProperties: false
+        properties:
+          name:
+            type: string
+          default:
+            type: boolean
+          weights:
+            type: object
+            additionalProperties: false
+            properties:
+              read:
+                type: integer
+              write:
+                type: integer
+          ips:
+            type: array
+            items:
+              type: string
+        required:
+        - name
+        - default
+        - weights
+        - ips
+    paths:
+      type: object
+      additionalProperties: false
+      properties:
+        read:
+          type: array
+          items:
+            type: string
+        write:
+          type: array
+          items:
+            type: string
+    annotations:
+      "$ref": "/common-1.json#/definitions/annotations"
+  required:
+  - account
+  - identifier
+  - vpc
+  - certificate_arn
+  - targets
 required:
 - provider

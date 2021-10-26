@@ -16,3 +16,9 @@ automationToken:
   field: all
 
 providerVersion: 3.22.0
+
+accountOwners:
+- name: Example Team
+  email: owners@example.com
+
+premiumSupport: true

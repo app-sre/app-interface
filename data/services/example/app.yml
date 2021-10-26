@@ -1,0 +1,20 @@
+---
+$schema: /app-sre/app-1.yml
+
+labels:
+  service: example
+
+name: example
+
+description: |
+  An example app file
+
+escalationPolicy:
+  $ref: /teams/placeholder-escalation.yml
+onboardingStatus: OnBoarded
+serviceOwners:
+- name: Example team
+  email: owners@example.com
+grafanaUrl: ''
+sopsUrl: ''
+architectureDocument: ''

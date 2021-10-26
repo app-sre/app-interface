@@ -1,0 +1,15 @@
+---
+$schema: /access/permission-1.yml
+
+labels: {}
+
+name: placeholder-escalation-permission
+description: any service referencing this file hasn't define an escalation policy
+
+service: slack-usergroup
+handle: escalation-undefined
+
+workspace:
+  $ref: /dependencies/slack/example.yml
+
+channels: []

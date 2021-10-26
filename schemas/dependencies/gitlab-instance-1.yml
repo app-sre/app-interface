@@ -28,6 +28,8 @@ properties:
       properties:
         group:
           type: string
+          enum:
+          - service
         projects:
           type: array
           items:

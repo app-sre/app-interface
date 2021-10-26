@@ -65,6 +65,20 @@ properties:
     type: array
     items:
       type: string
+  resetPasswords:
+    type: array
+    items:
+      additionalProperties: false
+      properties:
+        user:
+          "$ref": "/common-1.json#/definitions/crossref"
+          "$schemaRef": "/access/user-1.yml"
+        requestId:
+          type: string
+          pattern: ^[^\s]*$
+      required:
+      - user
+      - requestId
   premiumSupport:
     type: boolean
 required:
@@ -76,4 +90,6 @@ required:
 - uid
 - resourcesDefaultRegion
 - providerVersion
+- accountOwners
 - automationToken
+- premiumSupport

@@ -1,0 +1,14 @@
+
+---
+$schema: /app-sre/environment-1.yml
+
+
+labels: {}
+
+name: production
+
+description: |
+  The production environment for Example product
+
+product:
+  $ref: /products/example/product.yml

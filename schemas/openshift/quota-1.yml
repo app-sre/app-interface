@@ -50,11 +50,16 @@ properties:
               - cpu
             - required:
               - memory
+          pods:
+            type: integer
+            minimum: 1
         anyOf:
         - required:
           - limits
         - required:
           - requests
+        - required:
+          - pods
       scopes:
         type: array
         items:

@@ -1,6 +1,6 @@
 ---
 "$schema": /metaschema-1.json
-version: '1.0'
+version: "1.0"
 type: object
 
 additionalProperties: false
@@ -8,38 +8,37 @@ properties:
   "$schema":
     type: string
     enum:
-    - /aws/vpc-1.yml
+    - /app-sre/schedule-1.yml
   labels:
     "$ref": "/common-1.json#/definitions/labels"
-  account:
-    "$ref": "/common-1.json#/definitions/crossref"
-    "$schemaRef": "/aws/account-1.yml"
   name:
     type: string
   description:
     type: string
-  vpc_id:
-    type: string
-  cidr_block:
-    type: string
-  region:
-    type: string
-  subnets:
+  schedule:
     type: array
     items:
       type: object
       additionalProperties: false
       properties:
-        id:
+        start:
           type: string
+          format: date
+        end:
+          type: string
+          format: date
+        users:
+          type: array
+          items:
+            "$ref": "/common-1.json#/definitions/crossref"
+            "$schemaRef": "/access/user-1.yml"
+          minItems: 1
       required:
-      - id
+      - start
+      - end
+      - users
 required:
-- "$schema"
+- $schema
 - labels
-- account
 - name
-- description
-- vpc_id
-- cidr_block
-- region
+- schedule

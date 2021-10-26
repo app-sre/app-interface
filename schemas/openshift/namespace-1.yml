@@ -16,6 +16,9 @@ properties:
   name:
     type: string
 
+  delete:
+    type: boolean
+
   description:
     type: string
 
@@ -130,3 +133,5 @@ required:
 - name
 - description
 - cluster
+- app
+- environment
