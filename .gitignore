@@ -1,2 +1,4 @@
 temp/
 data.json
+schemas/
+graphql-schemas/

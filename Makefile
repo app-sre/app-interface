@@ -1,4 +1,4 @@
-.PHONY: bundle validate server
+.PHONY: schemas bundle validate run dev server
 
 include .env
 
@@ -9,6 +9,12 @@ BUNDLE_FILENAME ?= data.json
 PWD := $(shell pwd)
 GIT_COMMIT := $(shell git rev-parse HEAD)
 GIT_COMMIT_TIMESTAMP := $(shell git log -1 --format=%ct $(GIT_COMMIT))
+
+schemas:
+	@rm -rf schemas graphql-schemas
+	$(eval ID := $(shell $(CONTAINER_ENGINE) create $(SCHEMAS_IMAGE):$(SCHEMAS_IMAGE_TAG)))
+	@$(CONTAINER_ENGINE) cp $(ID):/schemas/. .
+	@$(CONTAINER_ENGINE) rm $(ID) &>/dev/null
 
 bundle:
 	mkdir -p $(OUTPUT_DIR)
@@ -29,10 +35,14 @@ validate:
 toc:
 	./hack/toc.py
 
-server: bundle validate
+run:
 	@$(CONTAINER_ENGINE) run -it --rm \
 		-v $(OUTPUT_DIR):/bundle:z \
 		-p 4000:4000 \
 		-e LOAD_METHOD=fs \
 		-e DATAFILES_FILE=/bundle/$(BUNDLE_FILENAME) \
 		$(QONTRACT_SERVER_IMAGE):$(QONTRACT_SERVER_IMAGE_TAG)
+
+dev: bundle validate run
+
+server: schemas bundle validate run
