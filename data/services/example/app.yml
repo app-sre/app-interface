@@ -16,5 +16,5 @@ serviceOwners:
 - name: Example team
   email: owners@example.com
 grafanaUrl: ''
-sopsUrl: ''
+sopsUrl: 'https://example.com/sops'
 architectureDocument: ''
