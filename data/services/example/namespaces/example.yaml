@@ -23,3 +23,12 @@ terraformResources:
   identifier: app-int-example-01
   defaults: /terraform/rds/free-tier-1.yml
   output_resource_name: db-creds
+  overrides:
+    publicly_accessible: true
+- provider: rds
+  account: app-int-example
+  identifier: app-int-example-01-replica
+  replica_source: app-int-example-01
+  defaults: /terraform/rds/free-tier-1.yml
+  output_resource_name: db-creds-replica
+  enhanced_monitoring: true

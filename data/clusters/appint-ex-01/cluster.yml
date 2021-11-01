@@ -23,6 +23,7 @@ spec:
   storage: 1
   load_balancers: 0
   nodes: 0
+  channel: candidate
 
 network:
   vpc: 10.0.0.0/16
