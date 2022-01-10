@@ -1,0 +1,16 @@
+---
+$schema: /dependencies/status-page-1.yml
+
+labels: {}
+
+name: example-page
+description: example page
+provider: atlassian
+url: https://examplepage.statuspage.io/
+
+credentials:
+  path: creds/statuspage/example
+  field: token
+
+apiUrl: https://api.statuspage.io
+pageId: xxx

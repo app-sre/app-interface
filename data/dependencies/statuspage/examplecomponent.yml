@@ -1,0 +1,10 @@
+---
+$schema: /dependencies/status-page-component-1.yml
+
+labels: {}
+
+name: example-component
+displayName: app-interface example
+instructions: TODO
+page:
+  $ref: /dependencies/statuspage/examplepage.yml
