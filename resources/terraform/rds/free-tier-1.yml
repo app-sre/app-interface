@@ -1,7 +1,7 @@
 engine: postgres
 name: postgres
 username: postgres
-instance_class: db.t2.micro
+instance_class: db.t3.micro
 allocated_storage: 20
 auto_minor_version_upgrade: false
 skip_final_snapshot: true
