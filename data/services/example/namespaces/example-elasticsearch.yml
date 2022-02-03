@@ -3,7 +3,7 @@ $schema: /openshift/namespace-1.yml
 
 labels: {}
 
-name: elasticsearch
+name: example-elasticsearch
 description: An elasticsearch namespace
 
 cluster:

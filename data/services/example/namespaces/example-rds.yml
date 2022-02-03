@@ -3,7 +3,7 @@ $schema: /openshift/namespace-1.yml
 
 labels: {}
 
-name: rds
+name: example-rds
 description: A rds namespace
 
 cluster:
