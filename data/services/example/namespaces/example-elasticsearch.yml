@@ -27,6 +27,7 @@ terraformResources:
   - INDEX_SLOW_LOGS
   - SEARCH_SLOW_LOGS
   - ES_APPLICATION_LOGS
+  - AUDIT_LOGS
 
 - provider: elasticsearch
   account: app-int-example
