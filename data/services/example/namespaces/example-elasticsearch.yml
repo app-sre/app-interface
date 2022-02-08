@@ -20,14 +20,13 @@ managedTerraformResources: true
 terraformResources:
 - provider: elasticsearch
   account: app-int-example
-  identifier: app-int-example-01-es
+  identifier: app-int-example-01-es1
   defaults: /terraform/elasticsearch/elasticsearch-1.yml
-  output_resource_name: elasticsearch-creds
+  output_resource_name: elasticsearch-creds1
   publish_log_types:
   - INDEX_SLOW_LOGS
   - SEARCH_SLOW_LOGS
   - ES_APPLICATION_LOGS
-  - AUDIT_LOGS
 
 - provider: elasticsearch
   account: app-int-example
@@ -36,3 +35,9 @@ terraformResources:
   output_resource_name: elasticsearch-creds2
   publish_log_types:
   - ES_APPLICATION_LOGS
+
+- provider: elasticsearch
+  account: app-int-example
+  identifier: app-int-example-01-es3
+  defaults: /terraform/elasticsearch/elasticsearch-1.yml
+  output_resource_name: elasticsearch-creds3
