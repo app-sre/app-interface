@@ -1,0 +1,22 @@
+---
+$schema: /app-sre/app-1.yml
+
+labels:
+  service: elasticsearch-example
+
+name: elasticsearch-example
+
+description: |
+  An example app file for elasticsearch domains
+
+escalationPolicy:
+  $ref: /teams/placeholder-escalation.yml
+onboardingStatus: OnBoarded
+serviceOwners:
+- name: Example team
+  email: owners@example.com
+grafanaUrls:
+  - title: 'Title'
+    url: 'http://localhost:8080'
+sopsUrl: 'https://example.com/sops'
+architectureDocument: ''

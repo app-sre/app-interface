@@ -1,0 +1,34 @@
+---
+$schema: /openshift/namespace-1.yml
+
+labels: {}
+
+name: example-rds-02
+description: A rds namespace
+
+cluster:
+  $ref: /clusters/appint-ex-02/cluster.yml
+
+app:
+  $ref: /services/rds-example/app.yml
+
+environment:
+  $ref: /products/example/environments/production.yml
+
+managedTerraformResources: true
+
+terraformResources:
+- provider: rds
+  account: app-int-example-02
+  identifier: app-int-example-02-rds
+  defaults: /terraform/rds/free-tier-1.yml
+  output_resource_name: creds
+  overrides:
+    publicly_accessible: true
+- provider: rds
+  account: app-int-example-02
+  identifier: app-int-example-02-rds-replica
+  replica_source: app-int-example-02-rds
+  defaults: /terraform/rds/free-tier-1.yml
+  output_resource_name: creds-replica
+  enhanced_monitoring: true

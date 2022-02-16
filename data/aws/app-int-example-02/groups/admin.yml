@@ -1,0 +1,13 @@
+---
+$schema: /aws/group-1.yml
+
+labels: {}
+
+account:
+  $ref: /aws/app-int-example-02/account.yml
+
+name: admin
+description: Admin group
+
+policies:
+- AdministratorAccess
