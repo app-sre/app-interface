@@ -1,0 +1,25 @@
+---
+$schema: /openshift/namespace-1.yml
+
+labels: {}
+
+name: example-elasticsearch-02
+description: An elasticsearch namespace
+
+cluster:
+  $ref: /clusters/appint-ex-02/cluster.yml
+
+app:
+  $ref: /services/elasticsearch-example/app.yml
+
+environment:
+  $ref: /products/example/environments/production.yml
+
+managedTerraformResources: true
+
+terraformResources:
+- provider: elasticsearch
+  account: app-int-example-02
+  identifier: app-int-example-02-es1
+  defaults: /terraform/elasticsearch/elasticsearch-1.yml
+  output_resource_name: creds

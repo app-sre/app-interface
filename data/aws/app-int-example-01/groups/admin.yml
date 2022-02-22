@@ -4,7 +4,7 @@ $schema: /aws/group-1.yml
 labels: {}
 
 account:
-  $ref: /aws/app-int-example/account.yml
+  $ref: /aws/app-int-example-01/account.yml
 
 name: admin
 description: Admin group

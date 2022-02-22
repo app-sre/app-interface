@@ -1,0 +1,27 @@
+---
+$schema: /aws/account-1.yml
+
+labels: {}
+
+name: app-int-example-01
+description: Example AWS account
+
+consoleUrl: https://1234567890.signin.aws.amazon.com/console
+uid: '1234567890'
+resourcesDefaultRegion: us-east-1
+supportedDeploymentRegions:
+- us-east-1
+- us-east-2
+terraformUsername: terraform
+
+accountOwners:
+- name: App-SRE Team
+  email: owner@example.com
+
+automationToken:
+  path: creds/terraform/app-int-example-01/config
+  field: all
+
+providerVersion: 3.22.0
+
+premiumSupport: true

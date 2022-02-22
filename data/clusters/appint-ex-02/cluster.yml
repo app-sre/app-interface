@@ -3,7 +3,7 @@ $schema: /openshift/cluster-1.yml
 
 labels: {}
 
-name: appint-ex-01
+name: appint-ex-02
 description: Example app-interface cluster
 consoleUrl: ''
 kibanaUrl: ''
@@ -42,7 +42,7 @@ automationToken:
 
 awsInfrastructureAccess:
 - awsGroup:
-    $ref: /aws/app-int-example-01/groups/admin.yml
+    $ref: /aws/app-int-example-02/groups/admin.yml
   accessLevel: network-mgmt
 
 peering:
@@ -50,7 +50,7 @@ peering:
   - provider: account-vpc-mesh
     name: app-int-example-mesh
     account:
-      $ref: /aws/app-int-example-01/account.yml
+      $ref: /aws/app-int-example-02/account.yml
     tags:
       Name: test
 
