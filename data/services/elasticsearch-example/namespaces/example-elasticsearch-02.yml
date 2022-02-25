@@ -18,8 +18,10 @@ environment:
 managedTerraformResources: true
 
 terraformResources:
-- provider: elasticsearch
-  account: app-int-example-02
-  identifier: app-int-example-02-es1
-  defaults: /terraform/elasticsearch/elasticsearch-1.yml
-  output_resource_name: creds
+- account:
+    $ref: /aws/app-int-example-02/account.yml
+  resources:
+  - provider: elasticsearch
+    identifier: app-int-example-02-es1
+    defaults: /terraform/elasticsearch/elasticsearch-1.yml
+    output_resource_name: creds

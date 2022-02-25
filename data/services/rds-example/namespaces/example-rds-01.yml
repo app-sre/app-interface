@@ -18,17 +18,18 @@ environment:
 managedTerraformResources: true
 
 terraformResources:
-- provider: rds
-  account: app-int-example-01
-  identifier: app-int-example-01-rds
-  defaults: /terraform/rds/free-tier-1.yml
-  output_resource_name: creds
-  overrides:
-    publicly_accessible: true
-- provider: rds
-  account: app-int-example-01
-  identifier: app-int-example-01-rds-replica
-  replica_source: app-int-example-01-rds
-  defaults: /terraform/rds/free-tier-1.yml
-  output_resource_name: creds-replica
-  enhanced_monitoring: true
+- account:
+    $ref: /aws/app-int-example-01/account.yml
+  resources:
+  - provider: rds
+    identifier: app-int-example-01-rds
+    defaults: /terraform/rds/free-tier-1.yml
+    output_resource_name: creds
+    overrides:
+      publicly_accessible: true
+  - provider: rds
+    identifier: app-int-example-01-rds-replica
+    replica_source: app-int-example-01-rds
+    defaults: /terraform/rds/free-tier-1.yml
+    output_resource_name: creds-replica
+    enhanced_monitoring: true
