@@ -18,7 +18,8 @@ environment:
 managedTerraformResources: true
 
 terraformResources:
-- account:
+- provider: aws
+  provisioner:
     $ref: /aws/app-int-example-01/account.yml
   resources:
   - provider: rds
