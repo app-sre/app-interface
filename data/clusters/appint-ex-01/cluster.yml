@@ -40,6 +40,11 @@ automationToken:
   path: creds/kube-configs/appint-ex-01
   field: token
 
+# Give user group defined by admin.yml the option
+# to obtain read or network-mgmt access in the AWS
+# account of the OSD cluster. currently this is also
+# required to give the terraform user network-mgmt
+# permissions for automated peering.
 awsInfrastructureAccess:
 - awsGroup:
     $ref: /aws/app-int-example-01/groups/admin.yml
@@ -48,6 +53,9 @@ awsInfrastructureAccess:
     $ref: /aws/app-int-example-01/groups/admin.yml
   accessLevel: network-mgmt
 
+# This is required to give the terraform user
+# network-mgmt permissions to do automated
+# peering.
 awsInfrastructureManagementAccounts:
 - account:
     $ref: /aws/app-int-example-01/account.yml
