@@ -26,7 +26,7 @@ spec:
   channel: candidate
 
 network:
-  vpc: 10.0.0.0/16
+  vpc: 10.122.0.0/16
   service: 172.30.0.0/16
   pod: 10.128.0.0/14
 
@@ -44,14 +44,5 @@ awsInfrastructureAccess:
 - awsGroup:
     $ref: /aws/app-int-example-02/groups/admin.yml
   accessLevel: network-mgmt
-
-peering:
-  connections:
-  - provider: account-vpc-mesh
-    name: app-int-example-mesh
-    account:
-      $ref: /aws/app-int-example-02/account.yml
-    tags:
-      Name: test
 
 internal: false

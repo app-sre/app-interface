@@ -26,7 +26,7 @@ spec:
   channel: candidate
 
 network:
-  vpc: 10.0.0.0/16
+  vpc: 10.122.0.0/16
   service: 172.30.0.0/16
   pod: 10.128.0.0/14
 
@@ -43,15 +43,26 @@ automationToken:
 awsInfrastructureAccess:
 - awsGroup:
     $ref: /aws/app-int-example-01/groups/admin.yml
+  accessLevel: read-only
+- awsGroup:
+    $ref: /aws/app-int-example-01/groups/admin.yml
   accessLevel: network-mgmt
+
+awsInfrastructureManagementAccounts:
+- account:
+    $ref: /aws/app-int-example-01/account.yml
+  accessLevel: network-mgmt
+  default: true
 
 peering:
   connections:
   - provider: account-vpc-mesh
-    name: app-int-example-mesh
+    name: appint-ex-01_app-int-example-01_mesh
     account:
       $ref: /aws/app-int-example-01/account.yml
     tags:
-      Name: test
+      # Make sure your VPC has this tag -> this is used as a filter!
+      Name: app-interface-development
+    manageRoutes: true
 
 internal: false
