@@ -1,0 +1,15 @@
+---
+$schema: /aws/vpc-1.yml
+
+labels: {}
+
+account:
+  $ref: /aws/app-int-example-01/account.yml
+
+name: app-int-example-01 vpc - peered
+description: |
+  Peering of app-int-example-01 VPC with OSD
+
+vpc_id: vpc-123456789
+cidr_block: 10.10.0.0/16
+region: us-east-1
