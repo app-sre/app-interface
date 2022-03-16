@@ -42,9 +42,7 @@ automationToken:
 
 # Give user group defined by admin.yml the option
 # to obtain read or network-mgmt access in the AWS
-# account of the OSD cluster. currently this is also
-# required to give the terraform user network-mgmt
-# permissions for automated peering.
+# account of the OSD cluster.
 awsInfrastructureAccess:
 - awsGroup:
     $ref: /aws/app-int-example-01/groups/admin.yml
