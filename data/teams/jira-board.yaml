@@ -1,0 +1,12 @@
+---
+$schema: /dependencies/jira-board-1.yml
+
+labels: {}
+
+name: JIRA
+description: JIRA Jira board
+server:
+  $ref: /dependencies/jira/jira-instance.yaml
+
+severityPriorityMappings:
+  $ref: /teams/major-minor.yml

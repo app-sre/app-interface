@@ -1,0 +1,23 @@
+---
+$schema: /openshift/namespace-1.yml
+
+labels: {}
+
+name: configmap-example-01
+description: A configmap namespace
+
+cluster:
+  $ref: /clusters/appint-ex-01/cluster.yml
+
+app:
+  $ref: /services/configmap-example/app.yml
+
+environment:
+  $ref: /products/example/environments/production.yml
+
+managedResourceTypes:
+- ConfigMap
+
+openshiftResources:
+- provider: resource
+  path: /services/configmap-example/example.configmap.yaml

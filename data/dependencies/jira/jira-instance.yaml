@@ -1,0 +1,12 @@
+---
+$schema: /dependencies/jira-server-1.yml
+
+labels: {}
+
+name: issues.example.com
+description: https://issues.example.com Jira server
+serverUrl: https://issues.example.com
+
+token:
+  path: app-sre/creds/jira
+  field: token
