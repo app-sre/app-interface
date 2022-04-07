@@ -1,0 +1,17 @@
+---
+$schema: /dependencies/jira-board-1.yml
+
+labels: {}
+
+name: Team Jira
+description: Team Jira Jira board
+server:
+  $ref: /dependencies/jira/jira-server.yml
+
+severityPriorityMappings:
+  $ref: /dependencies/jira/severity-priority-mappings/major-minor.yml
+
+slack:
+  workspace:
+    $ref: /dependencies/slack/example-workspace.yml
+  channel: team-channel

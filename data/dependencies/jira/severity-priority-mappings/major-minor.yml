@@ -1,0 +1,17 @@
+---
+$schema: /dependencies/jira-severity-priority-mappings-1.yml
+
+labels: {}
+
+name: major-minor
+description: a mapping between alert severities and jira ticket priority
+
+mappings:
+- severity: low
+  priority: Minor
+- severity: medium
+  priority: Normal
+- severity: high
+  priority: Major
+- severity: critical
+  priority: Critical

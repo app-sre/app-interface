@@ -3,8 +3,14 @@ $schema: /dependencies/status-page-component-1.yml
 
 labels: {}
 
-name: example-component
-displayName: app-interface example
-instructions: TODO
+name: test-component-in-maintenance
+displayName: Test component in maintenance
+instructions: >
+  TODO
 page:
   $ref: /dependencies/statuspage/examplepage.yml
+status:
+- provider: manual
+  manual:
+    componentStatus: under_maintenance
+    until: "2022-04-05T08:31:00Z"

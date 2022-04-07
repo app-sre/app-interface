@@ -10,7 +10,7 @@ description: |
   An example app file
 
 escalationPolicy:
-  $ref: /teams/placeholder-escalation.yml
+  $ref: /teams/example-team/escalation-policies/escalation-policy.yml
 onboardingStatus: OnBoarded
 serviceOwners:
 - name: Example team
