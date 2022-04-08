@@ -1,0 +1,19 @@
+---
+$schema: /app-sre/escalation-policy-1.yml
+
+labels: {}
+
+name: example-team-escalation-policy
+
+description: |
+  Describe your escalation policy for your team.
+
+channels:
+  slackUserGroup:
+  - $ref: /teams/example-team/permissions/team-slack-permissions.yml
+
+  email:
+  - owners+escalation-undefined@example.com
+
+  jiraBoard:
+  - $ref: /teams/example-team/jira/board.yml

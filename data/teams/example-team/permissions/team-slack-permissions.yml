@@ -1,0 +1,18 @@
+---
+$schema: /access/permission-1.yml
+
+labels: {}
+
+name: team-slack
+description: team slack
+
+service: slack-usergroup
+handle: team-handle
+
+workspace:
+  $ref: /dependencies/slack/example-workspace.yml
+
+channels:
+- team-channel
+- team-channel-cat-pictures
+- team-channel-cake-pictures
