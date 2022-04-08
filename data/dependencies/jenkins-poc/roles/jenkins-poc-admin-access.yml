@@ -1,0 +1,8 @@
+---
+$schema: /access/role-1.yml
+
+labels: {}
+name: jenkins-poc-admin-access
+
+permissions:
+- $ref: /dependencies/jenkins-poc/permissions/jenkins-poc-admin.yml
