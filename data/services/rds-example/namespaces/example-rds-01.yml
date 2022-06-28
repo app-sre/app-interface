@@ -26,3 +26,9 @@ externalResources:
       identifier: app-int-example-01-rds
       defaults: /terraform/rds/free-tier-1.yml
       output_resource_name: creds
+    - provider: rds
+      identifier: app-int-example-01-rds-replica
+      replica_source: app-int-example-01-rds
+      defaults: /terraform/rds/free-tier-1.yml
+      output_resource_name: creds-replica
+      enhanced_monitoring: true
