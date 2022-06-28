@@ -1,4 +1,5 @@
 engine: postgres
+engine_version: '12.9'
 name: postgres
 username: postgres
 instance_class: db.t2.micro
