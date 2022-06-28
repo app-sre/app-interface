@@ -1,0 +1,24 @@
+$schema: /app-sre/integration-1.yml
+
+labels: {}
+
+name: terraform-aws-route53
+
+description: Provisions AWS Route53 DNS zones and records
+
+upstream: https://github.com/app-sre/qontract-reconcile
+
+pr_check:
+  cmd: terraform-aws-route53
+
+schemas:
+- /app-interface/app-interface-settings-1.yml
+- /app-sre/integration-1.yml
+- /dependencies/dependency-1.yml
+- /dependencies/dns-zone-1.yml
+- /aws/account-1.yml
+- /aws/vpc-1.yml
+- /aws/ecr-1.yml
+- /openshift/cluster-1.yml
+- /dependencies/github-org-1.yml
+- /openshift/namespace-1.yml
