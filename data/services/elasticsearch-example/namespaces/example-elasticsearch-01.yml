@@ -15,23 +15,25 @@ app:
 environment:
   $ref: /products/example/environments/production.yml
 
-managedTerraformResources: true
+managedExternalResources: true
 
-terraformResources:
-- provider: elasticsearch
-  account: app-int-example-01
-  identifier: app-int-example-01-es1
-  defaults: /terraform/elasticsearch/elasticsearch-1.yml
-  output_resource_name: creds
-  publish_log_types:
-  - INDEX_SLOW_LOGS
-  - SEARCH_SLOW_LOGS
-  - ES_APPLICATION_LOGS
+externalResources:
+- provider: aws
+  provisioner:
+    $ref: /aws/app-int-example-01/account.yml
+  resources:
+  - provider: elasticsearch
+    identifier: app-int-example-01-es1
+    defaults: /terraform/elasticsearch/elasticsearch-1.yml
+    output_resource_name: creds
+    publish_log_types:
+    - INDEX_SLOW_LOGS
+    - SEARCH_SLOW_LOGS
+    - ES_APPLICATION_LOGS
 
-- provider: elasticsearch
-  account: app-int-example-01
-  identifier: app-int-example-01-es2
-  defaults: /terraform/elasticsearch/elasticsearch-1.yml
-  output_resource_name: creds
-  publish_log_types:
-  - ES_APPLICATION_LOGS
+  - provider: elasticsearch
+    identifier: app-int-example-01-es2
+    defaults: /terraform/elasticsearch/elasticsearch-1.yml
+    output_resource_name: creds
+    publish_log_types:
+    - ES_APPLICATION_LOGS
