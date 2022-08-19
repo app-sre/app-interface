@@ -15,20 +15,22 @@ app:
 environment:
   $ref: /products/example/environments/production.yml
 
-managedTerraformResources: true
+managedExternalResources: true
 
-terraformResources:
-- provider: rds
-  account: app-int-example-02
-  identifier: app-int-example-02-rds
-  defaults: /terraform/rds/free-tier-1.yml
-  output_resource_name: creds
-  overrides:
-    publicly_accessible: true
-- provider: rds
-  account: app-int-example-02
-  identifier: app-int-example-02-rds-replica
-  replica_source: app-int-example-02-rds
-  defaults: /terraform/rds/free-tier-1.yml
-  output_resource_name: creds-replica
-  enhanced_monitoring: true
+externalResources:
+- provider: aws
+  provisioner:
+    $ref: /aws/app-int-example-02/account.yml
+  resources:
+  - provider: rds
+    identifier: app-int-example-02-rds
+    defaults: /terraform/rds/free-tier-1.yml
+    output_resource_name: creds
+    overrides:
+      publicly_accessible: true
+  - provider: rds
+    identifier: app-int-example-02-rds-replica
+    replica_source: app-int-example-02-rds
+    defaults: /terraform/rds/free-tier-1.yml
+    output_resource_name: creds-replica
+    enhanced_monitoring: true

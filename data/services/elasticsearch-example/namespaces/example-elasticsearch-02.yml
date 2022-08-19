@@ -15,11 +15,14 @@ app:
 environment:
   $ref: /products/example/environments/production.yml
 
-managedTerraformResources: true
+managedExternalResources: true
 
-terraformResources:
-- provider: elasticsearch
-  account: app-int-example-02
-  identifier: app-int-example-02-es1
-  defaults: /terraform/elasticsearch/elasticsearch-1.yml
-  output_resource_name: creds
+externalResources:
+- provider: aws
+  provisioner:
+    $ref: /aws/app-int-example-02/account.yml
+  resources:
+  - provider: elasticsearch
+    identifier: app-int-example-02-es1
+    defaults: /terraform/elasticsearch/elasticsearch-1.yml
+    output_resource_name: creds
