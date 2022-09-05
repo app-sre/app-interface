@@ -1,0 +1,13 @@
+---
+$schema: /access/permission-1.yml
+
+labels: {}
+
+name: jenkins-poc-admin
+description: admin access to jenkins-poc
+
+service: jenkins-role
+instance:
+  $ref: /dependencies/jenkins-poc/jenkins-poc.yml
+
+role: admin

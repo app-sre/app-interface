@@ -1,0 +1,13 @@
+---
+$schema: /dependencies/jenkins-instance-1.yml
+
+labels:
+  service: jenkins-poc
+
+name: jenkins-poc
+description: Our PoC Jenkins for development purposes.
+
+serverUrl: https://jenkins.example.com
+token:
+  path: path-to-creds
+  field: jjb-ini-toml
