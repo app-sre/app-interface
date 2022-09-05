@@ -1,0 +1,16 @@
+---
+$schema: /openshift/openshift-cluster-manager-1.yml
+
+labels:
+  service: app-sre
+
+name: ocm-stage
+description: OpenShift Cluster Manager production - App SRE OSDv4 clusters
+url: "https://api.stage.openshift.com"
+
+accessTokenClientId: cloud-services
+accessTokenUrl: https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+# The use of offline token is deprecated
+offlineToken:
+  path: creds/ocm/qaprodauth-cloud-redhat-com
+  field: offline_token

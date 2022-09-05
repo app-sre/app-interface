@@ -16,7 +16,6 @@ spec:
   product: osd
   provider: aws
   region: us-east-1
-  version: ''
   initial_version: ''
   multi_az: true
   instance_type: ''
@@ -24,7 +23,15 @@ spec:
   storage: 1
   load_balancers: 0
   nodes: 0
+  version: '4.10.12'
   channel: candidate
+
+upgradePolicy:
+  workloads:
+  - dev
+  schedule: 0 12 * * 1-5
+  conditions:
+    soakDays: 0
 
 network:
   vpc: 10.122.0.0/16
