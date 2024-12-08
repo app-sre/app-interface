@@ -1,0 +1,17 @@
+---
+$schema: /dependencies/dependency-1.yml
+
+labels: {}
+
+name: jenkins-poc
+
+description: |
+  Our PoC Jenkins for development purposes.
+
+statefulness: Stateless
+opsModel: Internal
+SLA: 90.0
+dependencyFailureImpact: No Impact
+
+monitoring:
+  url: TODO # https://gitlab.cee.redhat.com/service/app-interface/-/blob/master/resources/observability/prometheus/prometheus-app-sre-additional-scrapeconfig-internal.secret.yaml
